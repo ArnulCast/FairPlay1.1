@@ -1,0 +1,61 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 30-abr-2019, 20:34:09
+    Author     : Developer
+*/
+#h-navbar{
+    display: block;
+    background-color: rgb(30,30,30);
+    padding-bottom:30%;
+    max-height: 100%;
+    box-shadow: 1px 2px 10px #000; 
+}
+.Fondo{
+    background-image: url("img/Fondoimu.jpg");
+    width: 100%;
+    height: 100%;
+    background-repeat: repeat ;
+    
+    
+}
+.Bigbox{
+    margin-top: 90px;
+    border-radius: 15px;
+    padding-bottom: 40%;
+    background-color: #ffffff;
+    box-shadow: 2px 2px 10px #000; 
+}
+.IUser{
+   margin-top: 90px;
+   width: 100px;
+   height: 100px;
+  
+}
+.aling{
+     margin-left: 50px;
+     margin-top:5px; 
+}
+.underline{
+    text-decoration: underline;
+}
+.textTiltle{
+    font-weight: bolder;
+    font-size: 2rem;
+    background-color: #dddddd;
+    color: black;
+}
+.barTit{
+    display: inline-block;
+    padding: 5px;
+    background-color: #dddddd;
+    width: 100%;
+    text-align: left;
+    border: 1px solid #000;
+}
+mybt:hover{
+    cursor: pointer;
+}

@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui">
+  <ui:composition template="/WEB-INF/include/PrimaryTemplate.xhtml">
+         <ui:define name="head">
+             <title>TuCanchaYa</title>
+             <h:outputStylesheet library="css" name="Reservas.css"/>
+             
+         </ui:define>
+          
+      <ui:define name="body">
+          <div class="Fondo"/>.
+              <div class="Bigbox">
+                  <b:row>
+              <b:column col-lg="7" col-xs="12" style="">
+                 
+                 <h:form  >
+                  <b:carousel id="slider" style="width: 650px;padding-left: 0px;">
+                  <b:carouselItem>
+                      <img class="sliederItem " style="width: 650px;height: 500px;" src="resources/img/Canchas/cancha1.jpg" alt="Valladolid"  />
+                  </b:carouselItem>
+                  <b:carouselItem>
+                     <img class="sliederItem" style="width: 650px;height: 500px;" src="resources/img/Canchas/cancha2.jpeg" alt="Valladolid"  />
+                  </b:carouselItem>
+                  <b:carouselItem>
+                     <img class="sliederItem " style="width: 650px;height: 500px;" src="resources/img/Canchas/cancha3.jpg" alt="Valladolid"  />
+                  </b:carouselItem>
+                  <b:carouselItem>
+                     <img class="sliederItem" style="width: 650px;height: 500px;" src="resources/img/Canchas/cancha4.jpg" alt="Valladolid"  />
+                  </b:carouselItem>
+               </b:carousel>
+              </h:form>
+               
+             </b:column>
+               
+                 <b:column col-lg="5" col-xs="12" style="">
+                     <div class="litlebox">
+                     <h:form>
+                         <div clas="title">
+                             <h:commandLink  class="title" >
+                             Cancha la Bombonera
+                         </h:commandLink>
+                         </div>
+                         <div class="body"> 
+                         <b:row>
+                             <b:column col-lg="8" >
+                                 <b:iconAwesome value="fa-map-marker"  size="lg"/>
+                                     El bosque mz-k lt-8
+                                 
+                             </b:column>
+                             <b:column  col-lg="4">
+                                 <div class="stars">
+                                        <a href="#" data-value="1" title="Votar con 1 estrellas">&#9733;</a>
+                                        <a href="#" data-value="2" title="Votar con 2 estrellas">&#9733;</a>
+                                        <a href="#" data-value="3" title="Votar con 3 estrellas">&#9733;</a>
+                                        <a href="#" data-value="4" title="Votar con 4 estrellas">&#9733;</a>
+                                        <a href="#" data-value="5" title="Votar con 5 estrellas">&#9733;</a>
+                                </div>
+                             </b:column>
+                         </b:row>
+                             </div>
+                         <br/>
+                         <div class="paragraph">
+                             <b:iconAwesome size="lg" class="price" value="fa-dollar"/> 2.000 Cop<br/><br/>
+                         <b:iconAwesome size="lg" value="fa-wifi"/> WiFi Gratis: Si<br/><br/>
+                         <b:iconAwesome size="lg" value="fa-car"/> Estacionamiento: Gratis<br/><br/>
+                         <b:iconAwesome size="lg" value="fa-users"/> Capacidad: 10 <br/><br/>
+                         <b:iconAwesome size="lg" value="fa-shopping-cart"/> Venta interna: Si <br/><br/>
+                         <b:iconAwesome size="lg" value="fa-soccer-ball-o"/> Alquiler de equipo: Si <br/><br/>
+                         <b:iconAwesome size="lg" value="fa-gift"/> Obsequios:<br/>
+                         <ul>
+                             <li>Bebida hidratante 1l(1)</li>
+                             <li>Bolsa de Hielo 1L (1)</li>
+                         </ul>
+                         </div>
+                         
+                         <div class="boxreserva">
+                             Datos para Reservacion<br/>
+                             <b:row class="Cmargin">
+                                 <b:column col-lg="6">
+                                     <b:dateTimePicker   mode="time"></b:dateTimePicker>
+                                 </b:column>
+                                 <b:column col-lg="6">
+                                     <b:commandButton class="form-control " value="Volver al listado"></b:commandButton>
+                                 </b:column>
+                             </b:row>
+                             
+                             <b:row>
+                                 <b:column col-lg="12">
+                                     <b:commandButton class="btn-primary form-control " value="Reservar"></b:commandButton>
+                                 </b:column>
+                             </b:row>
+                                 
+                                 
+                         </div>
+                  
+                   </h:form>
+                    </div>
+                 </b:column>
+                         
+              </b:row>
+                  
+                  <div class="paragraph"><br/><br/>
+                      
+                      <u class="Cmargin"> Otras opciones</u><br/>
+                      <hr/>
+                      <h:form>
+                      <b:column  col-lg="4">
+                          <div class="card">
+                              <b:row>
+                                  <b:column col-lg="5"  >
+                                      <div class="minimg"/>
+                                  </b:column>
+                                  <b:column col-lg="7">
+                                      <b:commandLink value="Cancha las florez"></b:commandLink><br/>
+                                      <b:iconAwesome value="fa-map-marker" />
+                                        Manga mz-d lt-5<br/><br/>
+                                       <b:iconAwesome class="" value="fa-dollar"/> 2.500 Cop<br/>
+                                       <div class="stars">
+                                        <a href="#" data-value="1" title="Votar con 1 estrellas">&#9733;</a>
+                                        <a href="#" data-value="2" title="Votar con 2 estrellas">&#9733;</a>
+                                        <a href="#" data-value="3" title="Votar con 3 estrellas">&#9733;</a>
+                                        <a href="#" data-value="4" title="Votar con 4 estrellas">&#9733;</a>
+                                       </div>
+                                  </b:column>
+                                      
+                              </b:row>
+                                  
+                          </div>
+                      </b:column>
+                      <b:column  col-lg="4">
+                          <div class="card">
+                              <b:row>
+                                  <b:column col-lg="5"  >
+                                      <div class="minimg"/>
+                                  </b:column>
+                                  <b:column col-lg="7">
+                                      <b:commandLink value="Cancha los hermanos"></b:commandLink><br/>
+                                      <b:iconAwesome value="fa-map-marker" />
+                                        Manga mz-d lt-5<br/><br/>
+                                       <b:iconAwesome class="" value="fa-dollar"/> 2.000 Cop<br/>
+                                       <div class="stars">
+                                        <a href="#" data-value="1" title="Votar con 1 estrellas">&#9733;</a>
+                                        <a href="#" data-value="2" title="Votar con 2 estrellas">&#9733;</a>
+                                        <a href="#" data-value="3" title="Votar con 3 estrellas">&#9733;</a>
+                                        <a href="#" data-value="4" title="Votar con 4 estrellas">&#9733;</a>
+                                       </div>
+                                  </b:column>
+                                      
+                              </b:row>
+                                  
+                          </div>
+                      </b:column>
+                      <b:column  col-lg="4">
+                          <div class="card">
+                              <b:row>
+                                  <b:column col-lg="5"  >
+                                      <div class="minimg"/>
+                                  </b:column>
+                                  <b:column col-lg="7">
+                                      <b:commandLink value="Cancha Rene"></b:commandLink><br/>
+                                      <b:iconAwesome value="fa-map-marker" />
+                                        Manga mz-d lt-5<br/><br/>
+                                       <b:iconAwesome class="" value="fa-dollar"/> 2.200 Cop<br/>
+                                       <div class="stars">
+                                        <a href="#" data-value="1" title="Votar con 1 estrellas">&#9733;</a>
+                                        <a href="#" data-value="2" title="Votar con 2 estrellas">&#9733;</a>
+                                        <a href="#" data-value="3" title="Votar con 3 estrellas">&#9733;</a>
+                                        <a href="#" data-value="4" title="Votar con 4 estrellas">&#9733;</a>
+                                       </div>
+                                  </b:column>
+                                      
+                              </b:row>
+                                  
+                          </div>
+                      </b:column>
+                      </h:form>
+                      </div>
+                      
+                 
+             </div>
+      </ui:define>
+  </ui:composition>
+</html>
+
