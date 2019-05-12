@@ -7,21 +7,19 @@
       xmlns:b="http://bootsfaces.net/ui">
        <ui:composition template="/WEB-INF/include/PrimaryTemplate.xhtml">
          <ui:define name="head">
-             <title>loging</title>
-             <h:outputStylesheet library="css" name="Loginstyle.css"/>
+             <title>Registrar Establecimiento</title>
+             <h:outputStylesheet library="css" name="Registrar.css"/>
          </ui:define>
-           
          <ui:define name="body">
-
-             <img id="fondo" src="resources/img/FondoE.jpg" class="img-responsive "/>   
+             <div class="Fondo"></div>
              <br/>
                 <center>
                  
-                <div  class="container-fluid form-group rebox col-xs-offset-1 col-xs-10 col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4">
+                <div  class=" box col-xs-offset-1 col-xs-10 col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4">
                     <h:form >
                     
                     <!--Campo de Nombre-->
-                    
+                    <div class="generalpadding">
                     <div class="form-group ">
                         <h:outputLabel  value="Nombre de Establecimeinto*" class="control-label form-inline toLeft" for="name"/>
                         <b:inputText value="#{regEst.nombre}" id="name" class="form-control" validatorMessage="El nombre no cumple el formato">
@@ -80,30 +78,41 @@
                     
                     <!--Campo -->
                     <br/><br/> <br/>
-                    <div class="form-group lborder " >
-                        <h:outputLabel value="Horario de Servicio dias normales*" class="control-label toLeft " for="cell"/>
-                        <b:panelGrid columns="2" class="">
-                            <b:formGroup class="toLeft  ">
-                                    <b:dateTimePicker label="Desde" value="#{regEst.HDOI}" class="small " show-date="false" show-time="true"></b:dateTimePicker>
-                             </b:formGroup>
-                             <b:formGroup class="toLeft">
-                                    <b:dateTimePicker label="Hasta" value="#{regEst.HDOF}" class="l small toRight " show-date="false" show-time="true"></b:dateTimePicker>
-                            </b:formGroup>
-                        </b:panelGrid>
-                        </div>
-          
-                    <div class="form-group lborder ">
-                        <h:outputLabel value="Horario de Servicio Domingos/Festivos*" class="control-label toLeft" for="cell"/><br/>
-                        <b:panelGrid columns="2" class="">
-                            <b:formGroup class="toLeft">
-                                    <b:dateTimePicker label="Desde" value="#{regEst.HDFI}" class="small " show-date="false" show-time="true"></b:dateTimePicker>
-                                 </b:formGroup>
-                             <b:formGroup class="toLeft">
-                                    <b:dateTimePicker label="Hasta" value="#{regEst.HDFF}" class="l small toRight " show-date="false" show-time="true"></b:dateTimePicker>
-                            </b:formGroup>
-                        </b:panelGrid>
+                    <div class="form-inline lborder col-lg-12 " >
+                        <h:outputLabel value="Horario de Servicio" class="control-label toLeft " for="cell"/>
+                        <br/><br/>
                         
-                    </div>
+                        <div class="toLeft col-lg-6">
+                                    <b:dateTimePicker  value="#{regEst.HDOI}" class="" show-date="false" show-time="true"></b:dateTimePicker>
+                            </div>
+                        <div class="toRight col-lg-6">
+                            <b:dateTimePicker value="#{regEst.HDOF}"  class=" " show-date="false" show-time="true"></b:dateTimePicker>
+                         </div>
+                        
+                        </div>
+                        <br/>
+                        <b:accordion expanded-panels="panel1,panel3" class="accordion">
+                        <b:panel id="panel1" title="Servicios adicionales">
+                            <b:row class="row-table">
+                                <b:column col-lg="4">Servicio</b:column><b:column col-lg="4">Gratis</b:column><b:column col-lg="4">Precio</b:column>
+                            </b:row>
+                            <b:row  class="row-table" >
+                                <b:column col-lg="4">WiFi</b:column><b:column col-lg="4"><b:selectBooleanCheckbox/></b:column><b:column col-lg="4"><b:inputText class="tablein"/></b:column>
+                            </b:row>
+                            <b:row  class="row-table" >
+                                <b:column col-lg="4">Estacionamiento</b:column><b:column col-lg="4"><b:selectBooleanCheckbox/></b:column><b:column col-lg="4"><b:inputText class="tablein"/></b:column>
+                            </b:row>
+                            <b:row  class="row-table" >
+                                <b:column col-lg="4">Alquiler de equiops</b:column><b:column col-lg="4"><b:selectBooleanCheckbox/></b:column><b:column col-lg="4"><b:inputText class="tablein"/></b:column>
+                            </b:row>
+                            <b:row  class="row-table" >
+                                <b:column col-lg="4">venta interna</b:column><b:column col-lg="4"><b:selectBooleanCheckbox/></b:column><b:column col-lg="4"><b:inputText class="tablein"/></b:column>
+                            </b:row><b:row  class="row-table" >
+                                <b:column col-lg="4">Obsequios</b:column><b:column col-lg="8"><b:inputText class="tablein"/></b:column>
+                            </b:row>
+                        </b:panel>
+                    </b:accordion>
+                   
                    
                     <div class="form-group ">
                         
@@ -127,15 +136,11 @@
                      </center>
                     <br/>
                     <!--Botones enviar cancelar-->
-                    <div class="form-inline col-xs-12">
-                        <div class="form-group col-xs-offset-1 col-xs-4">
-                            <h:commandLink class="btn btn-danger control-label " immediate="true" value="Cancelar" action="index.xhtml"></h:commandLink>
-                        </div>
-                        <div class="form-group col-xs-offset-1 col-xs-4">
-                            <h:commandButton actionListener="#{regEst.submit(log.codUser)}" class="btn btn-primary form-control" value="Enviar" action="Confirm.xhtml"></h:commandButton>
-                        </div>
+                  
+                        <b:commandLink class="mybtn  bg-danger col-lg-6  col-xs-6  " immediate="true" id="cancel" action="index.xhtml"  >Cancelar</b:commandLink>
+                        <b:commandLink immediate="false" class="mybtn bg-primary col-lg-6 col-xs-6 "  id="submit" >Registrar</b:commandLink>
+                    <br/>
                     </div>
-                    
                     </h:form>
                 </div>
              

@@ -19,13 +19,13 @@
                  <!--Campo Email-->                            
                     <div class="form-group">
                         <h:outputLabel value="UserName" class="control-label form-inline toLeft" for="name"  />
-                        <b:inputText value="#{login.user}" validator="#{login.existen}" required="true" requiredMessage="Llenar Campo" id="name" class="input-group form-control" placeholder="Nombre de usuario"/>
+                        <b:inputText   required="true" requiredMessage="Llenar Campo" id="name" class="input-group form-control" placeholder="Nombre de usuario"/>
           
                     </div>
                     <!--Campo Contraseña-->
                     <div class="form-group ">
                         <h:outputLabel value="Contraseña" class="control-label toLeft" for="pass"/>
-                        <h:inputSecret label="fatal" value="#{login.pass}"  validator="#{login.existen}" required="true" requiredMessage="Llenar Campo"  id="pass" autocomplete="off" class="form-control "/>
+                        <h:inputSecret label="fatal"   required="true" requiredMessage="Llenar Campo"  id="pass" autocomplete="off" class="form-control "/>
                         
                         
                     </div>
@@ -46,7 +46,7 @@
                             <h:commandLink  class="btn btn-danger " immediate="true" value="Cancelar" action="index.xhtml"></h:commandLink>
                         </div>
                         <div class="form-group col-xs-offset-1 col-xs-4">
-                            <h:commandButton actionListener="#{log.submit(login.objUser)}" id="def" action="index.xhtml" class="btn btn-primary"  value="Enviar"></h:commandButton>
+                            <h:commandButton id="def" action="index.xhtml" class="btn btn-primary"  value="Enviar"></h:commandButton>
                             <b:defaultCommand target="def"/>
                         </div>
                     </div>
