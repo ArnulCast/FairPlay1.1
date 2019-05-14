@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+          >
+     <ui:composition template="/WEB-INF/include/PrimaryTemplate.xhtml">
+         <ui:define name="head">
+             <title>loging</title>
+             <h:outputStylesheet library="css" name="Registrar.css"/>
+         </ui:define>
+         <ui:define name="body"  >
+             <!--Imagen de fondo-->
+             <div class="Fondo"></div>
+             <center>
+                <h:form  enctype="multipart/form-data">
+                   
+                  <div class="tab">
+                      <div class="generalpadding">
+                      <div class="form-group" >
+                          <img  alt="" src="#{registrar.imgPerfil}" id="profile-image1"   class="img-circle img-responsive imaup"/> 
+                         <input id="profile-image-upload" class="hidden" type="file"/>
+                         <div style="color:#999;" >click para insertar imagen de perfil</div>
+                      </div>
+
+                    
+                    <!--Campo UserName-->
+                    <div class="form-group ">
+                        <h:outputLabel value="Nombre de usuario" class="control-label toLeft" for="user"/>
+                        <b:inputText  id="user" value="#{registrar.nombre}"  class="form-control"></b:inputText>
+                    </div>
+                    <b:message for="user" class="bg-danger small" ></b:message>
+                    
+                    
+                    <!--Campo Email-->
+                    <div class="form-group">
+                        <h:outputLabel value="Carreo electronicio" class="control-label toLeft " for="mail"/>
+                        <b:inputText value="#{registrar.email}" id="mail" class="form-control" validatorMessage="Correo no valido " placeholder="Example@mail.com">
+                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z]{2,})$"><!--Ojo Esta exprecion regular valida una sintaxis correcta del correo-->
+                            </f:validateRegex>
+                        </b:inputText>
+                        <h:message class="bg-danger" for="mail"></h:message><!--Message muestra un mensage de error si no se cunple con la Exprecion de validacion-->
+                    </div>
+                    
+                    
+                    <!--Campo celular-->
+                    <div class="form-group">
+                        <h:outputLabel value="Celular"  class="control-label toLeft" for="cell"/>
+                        <b:inputText  id="cell" value="#{registrar.celular}"  class="form-control"></b:inputText>
+                    </div>
+                    
+                    
+                    <!--Campo Contraseña-->
+                    <div class="form-group">
+                        <h:outputLabel value="Contraseña" class="control-label toLeft" for="pass1"/>
+                        <b:inputSecret value="#{registrar.contraseña}" id="pass1" autocomplete="off" class="form-control"/>
+                    </div>
+                    
+                    
+                    <!--Campo confirmar contraseña-->
+                    <div class="form-group">
+                        <h:outputLabel value="Confirmar Contraseña*" class="control-label toLeft" for="pass2"/>
+                        <b:inputSecret value="#{registrar.confirmarcontraseña}" id="pass2"  autocomplete="off" class="form-control right "/>
+                    </div>
+                    
+                    
+                    <!--Checkbox Acepto terminos y condiciones-->
+                    <center class="form-inline #{log.visitante}">
+                        <div class="form-group">
+                            <b:selectBooleanCheckbox  class="checkbox-inline checkbox"></b:selectBooleanCheckbox>
+                            <b>*Acepto</b>
+                        </div>
+                        <!--Link a Terminos y condiciones-->
+                        <div class="form-group">
+                            <b:commandLink immediate="true"><u><b>Terminos y condiciones</b></u></b:commandLink>
+                         </div>
+                      
+                    
+                     </center>
+                    
+                    </div>
+                    <br/>
+                    <!--Botones enviar cancelar-->
+                    
+                        <b:commandLink class="mybtn  bg-danger col-lg-6  col-xs-6  " immediate="true" id="cancel" action="index.xhtml"  >Cancelar</b:commandLink>
+                        <b:commandLink immediate="false" class="mybtn bg-primary col-lg-6 col-xs-6 "  id="submit" action="#{registrar.submit()}">Registrar</b:commandLink>
+                        <small>.</small>
+                </div>
+                    
+              </h:form>
+             
+            </center>
+              <h:outputScript library="js" name="imagenperfil.js"></h:outputScript>
+         </ui:define>
+     </ui:composition>
+</html>
+

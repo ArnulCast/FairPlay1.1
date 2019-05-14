@@ -1,0 +1,82 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 07-abr-2019, 18:09:50
+    Author     : Developer
+*/
+#contenedor{
+    background-color:  #ffffff;
+}
+#banner{
+    margin-top: 60px;
+    background: gray;
+    height: 100px;
+    width: 100%;
+    float: left;
+}
+.filtro{
+    display: block;
+    margin-top: 10px;
+    float: left;
+    background: rgba(255,255,255,0.9);
+    height:350px;
+    width: 100%;
+    border: 1px solid gray;
+}
+
+.line{
+    display: block;
+    border-bottom: 1px solid gray;
+    width: 100%;
+}
+.showpad{
+    display: block;
+    margin: 10px 0px 20px;
+    padding: 15px;
+    padding: 0px 20px 0px 20px;
+    display: block;
+    width: 100%;
+    border: 1px solid gray;
+}
+.itemR{
+    background-color: #fefefe;
+    margin: 10px;
+    padding: 10px;
+    border-bottom:1px solid gray;
+}
+.link{
+    font-size:20px;
+    color: #2c88e6;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+.link:hover{
+    text-decoration: none;
+}
+.imgitem{
+    width: 100px;
+    height: 100px;
+    background: gray;
+    margin-bottom: 10px;
+}
+.setLeft{
+    float: left;
+}
+.setRight{
+    float: right;
+}
+@media only screen and (max-width: 769px){
+    .filtro{
+        height: 100px;
+        margin-top:  10px;
+        border-bottom: 2px outset black;
+    }
+    .boxFiltro{
+        background: black;
+    }
+}

@@ -1,0 +1,145 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 01-ene-2014, 2:05:28
+    Author     : Developer
+*/
+.Fondo{
+    z-index: -1;
+    position: fixed;
+    background-image: url("img/Fondoimu.jpg");   
+    width:100%;
+    height:100% ;
+    background-repeat: repeat ;
+}
+#fondo{
+
+    z-index: -1;
+    position: fixed;
+   
+}
+
+
+.logo{
+    width: 40%;
+    height: auto;
+}
+.Box{
+    background-color: rgb(30,30,30);
+    box-shadow:2px 1px 5px black;
+    display:inline-block;
+    padding: 10px;
+    
+}
+
+.salto{
+    margin-top: 15%
+}
+.dark{
+    background-color:  rgb(25,25,25);
+    color: white;
+    font-weight: bold;
+    border: 0px;
+    border-radius: 3px;
+    box-shadow: 0px 0px 0px black;
+    margin-right: 10px;
+    margin-left:  10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.blanco{
+    color: white;
+    margin-bottom: 5px;
+}
+.dropdark {
+    color: white;
+    background-color: rgba(45,45,45,0.6);
+    font-weight: bold;
+    border: 0px;
+    border-radius: 3px;
+    box-shadow: 1px 5px 11px black;
+}
+.menu{
+    
+    color: white;
+    margin-top: auto;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+.imageuser{
+   
+    width: 35px;
+    height: 35px;
+    margin-top: 8px;
+    margin-left: 10px;
+    float: left;
+}
+.itemenu{
+    color: white;
+}
+.bn{
+    border-radius: 0px;
+}
+.mybtn{
+    
+    display: inline-block;
+    text-align: center;
+    padding: 5px 0px;
+    text-decoration: none;
+}
+.mybtn:hover{
+        text-decoration: none;
+        cursor: pointer;
+}
+.cancelbt{
+    background-color: #f2dede;
+}
+
+@media only screen and (max-width: 550px) {
+    .Box{
+       background-color: white;
+    /*border: solid 2px rgba(00,0,0,0.3);*/
+    box-shadow:0px 0px 0px white;
+    align-items: center;
+    padding-bottom: 1px;
+    padding-top: 1px;
+    display: inline-block;
+    }
+}
+
+.bot{
+    display:block;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    padding: 7px 0px;
+    width: 12vw;
+    
+}
+.bot:hover{
+    cursor: pointer;
+    text-decoration: none;
+}
+.botb{
+    width: 5vw;
+    background: #09870a
+}
+.botd{
+    width: 12vw;
+}
+@media only screen and(max-width: 550px){
+    
+}
+
+.items{
+    display: block;
+    width: 100%;
+    height: 100%;    
+
+}
+.divmargeng{
+    padding-bottom: 4px ; 
+}

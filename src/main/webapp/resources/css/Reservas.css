@@ -1,0 +1,91 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 25-nov-2018, 20:03:27
+    Author     : Developer
+*/
+
+
+
+#slider{
+    
+    height:700px;
+}
+.sliederItem{
+  
+    
+}
+.Bigbox{
+    width: 1100px;
+    height: 750px;
+    padding-bottom: 30px;
+    background-color: #ffffff;
+    box-shadow: 2px 2px 10px #000; 
+    margin: auto;
+    margin-top: 90px;
+    margin-bottom: 40px;
+  
+        
+}
+.litlebox{
+    display: block;
+    height: 498px;
+    padding-left: 10px;
+    border-left: 2px  solid black;
+    border-bottom: 2px  solid black;
+}
+.title{
+    margin-top: 5px;
+    font-weight: bolder;
+    font-size: 3rem;
+    text-decoration: underline;
+    
+}
+.body{
+    font-weight: bolder;
+    font-size: 2rem;
+    
+}
+.paragraph{
+    font-weight: bold;
+}
+.stars>a{
+    color: #ffff00;
+}
+.stars>a:hover{
+    color:#ffff00; 
+    
+}
+.boxreserva{
+   
+    margin: 2px;
+    border: 1px solid black;
+    padding: 5px;
+    margin-right: 10Px;
+    
+}
+.Cmargin{
+    margin: 5px;
+}
+.card{
+    display:  block;
+    box-shadow: 1px 1px 5px #000; 
+    height: 180px;
+    width: 100%;
+    height: 100px;
+}
+.price{
+    font-size: 3rem;
+    color: #000000;
+    text-decoration: underline;
+    margin-left: 10px;
+}
+.minimg{
+    
+    background-image:url("img/ico.jpg");
+    height: 100px;
+    width: 100%;
+}

@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+       <ui:composition template="/WEB-INF/include/PrimaryTemplate.xhtml">
+         <ui:define name="head">
+             <title>Registrar Establecimiento</title>
+             <h:outputStylesheet library="css" name="Registrar.css"/>
+         </ui:define>
+         <ui:define name="body">
+             <div class="Fondo"></div>
+             <br/>
+                <center>
+                 
+                <div  class=" box col-xs-offset-1 col-xs-10 col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4">
+                    <h:form >
+                    
+                    <!--Campo de Nombre-->
+                    <div class="generalpadding">
+                    <div class="form-group ">
+                        <h:outputLabel  value="Nombre de Establecimeinto*" class="control-label form-inline toLeft" for="name"/>
+                        <b:inputText value="#{regEst.nombre}" id="name" class="form-control" validatorMessage="El nombre no cumple el formato">
+                        </b:inputText>
+                        <h:message class="bg-danger" for="name"></h:message>
+                    </div>  
+                    <div class="form-group">
+                        <h:outputLabel  value="Telefono*" class="control-label form-inline toLeft" for="tel"/>
+                        <b:inputText value="#{regEst.telefono}" id="tel" class="form-control" validatorMessage="El telefono no cumple">
+                        </b:inputText>
+                        <h:message class="bg-danger" for="tel"></h:message>
+                    </div>  
+                    <!--Campo UserName-->
+                    <h:message for="user" class="bg-danger small" ></h:message>
+                    <!--Campo Email-->
+                  
+                  
+                       
+                    <div class="form-inline">
+                        <h:outputLabel value="Dias de atencion*" class="control-label toLeft" for="bt1"/>
+                              <br/> 
+                            
+                              <div class="input-group  toLeft">
+                                <span class="input-group-addon ">Desde:</span>
+                                <b:selectOneMenu ajax="" value="#{regEst.de}" class="dropdown  "> 
+                                    <f:selectItem class="item small " itemValue="1" itemLabel="Lunes"></f:selectItem>
+                                <f:selectItem class="item small" itemValue="2"  itemLabel="Martes"></f:selectItem> 
+                                <f:selectItem class="item small" itemValue="3"  itemLabel="Miercoles"></f:selectItem> 
+                                <f:selectItem class="item small" itemValue="4"  itemLabel="Jueves"></f:selectItem> 
+                                <f:selectItem class="item small" itemValue="5"  itemLabel="Viernes"></f:selectItem> 
+                                <f:selectItem class="item small" itemValue="6"  itemLabel="Sabado"></f:selectItem> 
+                                <f:selectItem class="item small" itemValue="7"  itemLabel="Domingo"></f:selectItem>
+                                
+                            </b:selectOneMenu>
+                          
+                              </div>
+                            
+                              <div  class=" input-group toRight">
+                             <span class="input-group-addon small ">Hasta:</span>
+                             <b:selectOneMenu value="#{regEst.a}" class="dropdown form-control">
+                                 <f:selectItem class="item small " itemValue="1" itemLabel="Lunes"></f:selectItem>
+                                <f:selectItem class="item small" itemValue="2"  itemLabel="Martes"></f:selectItem> 
+                                <f:selectItem class="item small" itemValue="3"  itemLabel="Miercoles"></f:selectItem> 
+                                <f:selectItem class="item small" itemValue="4"  itemLabel="Jueves"></f:selectItem> 
+                                <f:selectItem class="item small" itemValue="5"  itemLabel="Viernes"></f:selectItem> 
+                                <f:selectItem class="item small" itemValue="6"  itemLabel="Sabado"></f:selectItem> 
+                                <f:selectItem class="item small" itemValue="7"  itemLabel="Domingo"></f:selectItem>
+                                <f:selectItem class="item small " noSelectionOption="true" itemLabel="Select.."></f:selectItem>
+                            </b:selectOneMenu>
+                                     
+                                  </div>
+               
+                      
+                </div>
+                    
+                    
+                    <!--Campo -->
+                    <br/><br/> <br/>
+                    <div class="form-inline lborder col-lg-12 " >
+                        <h:outputLabel value="Horario de Servicio" class="control-label toLeft " for="cell"/>
+                        <br/><br/>
+                        
+                        <div class="toLeft col-lg-6">
+                                    <b:dateTimePicker  value="#{regEst.HDOI}" class="" show-date="false" show-time="true"></b:dateTimePicker>
+                            </div>
+                        <div class="toRight col-lg-6">
+                            <b:dateTimePicker value="#{regEst.HDOF}"  class=" " show-date="false" show-time="true"></b:dateTimePicker>
+                         </div>
+                        
+                        </div>
+                        <br/>
+                        <b:accordion expanded-panels="panel1,panel3" class="accordion">
+                        <b:panel id="panel1" title="Servicios adicionales">
+                            <b:row class="row-table">
+                                <b:column col-lg="4">Servicio</b:column><b:column col-lg="4">Gratis</b:column><b:column col-lg="4">Precio</b:column>
+                            </b:row>
+                            <b:row  class="row-table" >
+                                <b:column col-lg="4">WiFi</b:column><b:column col-lg="4"><b:selectBooleanCheckbox/></b:column><b:column col-lg="4"><b:inputText class="tablein"/></b:column>
+                            </b:row>
+                            <b:row  class="row-table" >
+                                <b:column col-lg="4">Estacionamiento</b:column><b:column col-lg="4"><b:selectBooleanCheckbox/></b:column><b:column col-lg="4"><b:inputText class="tablein"/></b:column>
+                            </b:row>
+                            <b:row  class="row-table" >
+                                <b:column col-lg="4">Alquiler de equiops</b:column><b:column col-lg="4"><b:selectBooleanCheckbox/></b:column><b:column col-lg="4"><b:inputText class="tablein"/></b:column>
+                            </b:row>
+                            <b:row  class="row-table" >
+                                <b:column col-lg="4">venta interna</b:column><b:column col-lg="4"><b:selectBooleanCheckbox/></b:column><b:column col-lg="4"><b:inputText class="tablein"/></b:column>
+                            </b:row><b:row  class="row-table" >
+                                <b:column col-lg="4">Obsequios</b:column><b:column col-lg="8"><b:inputText class="tablein"/></b:column>
+                            </b:row>
+                        </b:panel>
+                    </b:accordion>
+                   
+                   
+                    <div class="form-group ">
+                        
+                        <h:outputLabel class="btn btn-default form-control top" value="Seleccione ubicacion"></h:outputLabel>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel  class="control-label toLeft" value="Descripcion"></h:outputLabel>
+                        <b:inputTextarea  value="#{regEst.desc}" class="form-control "   maxlength="300"  placeholder="Introdusca la presentacion para su establecimeinto(300 letras)"/>
+                    </div>
+                    
+                    <!--Checkbox Acepto terminos y condiciones-->
+                    <center class="form-inline">
+                        <div class="form-group">
+                            <h:selectBooleanCheckbox class="checkbox-inline checkbox"></h:selectBooleanCheckbox>
+                            <b>*Acepto</b>
+                        </div>
+                        <!--Link a Terminos y condiciones-->
+                        <div class="form-group">
+                            <h:commandLink immediate="true"><u><b>Terminos y condiciones</b></u></h:commandLink>
+                         </div>
+                     </center>
+                    <br/>
+                    <!--Botones enviar cancelar-->
+                  
+                        <b:commandLink class="mybtn  bg-danger col-lg-6  col-xs-6  " immediate="true" id="cancel" action="index.xhtml"  >Cancelar</b:commandLink>
+                        <b:commandLink immediate="false" class="mybtn bg-primary col-lg-6 col-xs-6 "  id="submit" >Registrar</b:commandLink>
+                    <br/>
+                    </div>
+                    </h:form>
+                </div>
+             
+            </center>     
+             
+         </ui:define>
+     </ui:composition>
+</html>
+

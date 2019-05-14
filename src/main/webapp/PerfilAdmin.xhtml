@@ -1,0 +1,327 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui">
+    <ui:composition template="/WEB-INF/include/PrimaryTemplate.xhtml">
+         <ui:define name="head">
+             <title>TuCanchaYa</title>
+             <h:outputStylesheet library="css" name="Perfil.css"/>
+             
+         </ui:define>
+          
+         <ui:define name="body" >
+
+            <h:form>
+                <br/><br/>
+                <div class=" nav-horizontal navbar-inverse " onload="#{adminE.setCode(log.codUser)}">
+                   <h:graphicImage value="resources/img/ico.jpg" class="imagEsta"/>
+                    <ul id="na" class=" list-group">
+                        <li class="divider"></li>
+                        <li><h:commandLink class=" list-group-item d" style="border-radius: 0px;" actionListener="#{adminE.Estadisticas}" value="Ver estadisticas"/></li>
+                        <li><h:commandLink class="d list-group-item   " style="border-radius: 0px;" actionListener="#{adminE.Reservas}" value="Ver reservas"/></li>
+                        <li><h:commandLink class="list-group-item d " style="border-radius: 0px;" action="#{adminE.Canchas}" value="Ver canchas"/></li>
+                        <li><h:commandLink class=" list-group-item d" style="border-radius: 0px;" action="#{adminE.MiLocal}" value="Mi Local"/></li>
+                   </ul>
+             </div>
+             </h:form>
+                
+                
+                 <center>
+                     <br/>
+                         <div class="col-xs-offset-3 form-group col-xs-8">
+                             <div class="h1 form-group">#{adminE.ename}</div>
+                        </div>
+                       <br/>
+                 <div id="Canchas" class="container #{adminE.vista[2]} col-xs-offset-3 col-xs-8 admin-box " >
+                     <h:form>
+                         
+                         <div class="control-label toLeft h3">
+                             Listado de canchas </div>
+                         
+                         <div class="form-group">
+                             <h:commandLink value="Agregar Una Cancha" action="RE_Cancha.xhtml" class="control-label btn btn-primary form-control"/>
+                         </div>
+                         <div class="form-group">
+                             <h:dataTable columnClasses="" value="#{adminE.show}" class=" table table-responsive table-bordered table-condensed table-striped " var="dato">
+                             <h:column >
+                                 
+                             <f:facet name="header">
+                                 <center>
+                                 <h:outputText value="Codigo"  ></h:outputText></center>
+                             </f:facet>
+                              <center>
+                                  <h:outputText class="control-label center-block" value="#{dato.cod}"></h:outputText>
+                                 </center>
+                         </h:column>
+                              <h:column>
+                             <f:facet name="header">
+                                 <center><h:outputText value="Id cancha" ></h:outputText></center>
+                             </f:facet>
+                                  <center><h:outputText value="#{dato.name}"></h:outputText></center>
+                         </h:column>
+                         <h:column>
+                             <f:facet name="header">
+                                 <center><h:outputText value="Tipo de cancha" ></h:outputText></center>
+                             </f:facet>
+                             <center><h:outputText value="#{dato.stipo}"></h:outputText></center>
+                         </h:column>
+                         <h:column>
+                             <f:facet name="header">
+                                 <center> <h:outputText value="Capacidad" ></h:outputText></center>
+                             </f:facet>
+                             <center><h:outputText value="#{dato.capacida}" ></h:outputText></center>
+                         </h:column>
+                         
+                         <h:column>
+                             <f:facet name="header">
+                                 <center> <h:outputText value="Valor/Hora" ></h:outputText></center>
+                             </f:facet>
+                             <center><h:outputText value="#{dato.precioHOra}"></h:outputText></center>
+                         </h:column>
+                           <h:column>
+                             <f:facet name="header">
+                                 <center><h:outputText value="Calificacion" ></h:outputText></center>
+                             </f:facet>
+                             <center><h:outputText value="#{dato.puntuacion}"></h:outputText></center>
+                         </h:column>
+                         <h:column>
+                             
+                             <f:facet name="header">
+                                 <center><h:outputText value="Config..." ></h:outputText></center>
+                             </f:facet>
+                                 <center>
+                                     <span class=""></span>
+                                     <div class="dropdown">
+                                         <span type="button" class="glyphicon glyphicon-wrench btn btn-xs " data-toggle="dropdown" ><span class="caret"></span></span>
+                                         <ul class="dropdown-menu dropdown-menu-left">
+                                             <li class="small">
+                                                 <h:commandLink value="Actualizar" ></h:commandLink>
+                                             </li>
+                                             <li class="small">
+                                                 <h:commandLink value="Desabilitar" ></h:commandLink>
+                                             </li>
+                                             <li class="small">
+                                                 <h:commandLink value="Eliminar" ></h:commandLink>
+                                             </li>
+                                         </ul>
+                                     </div>
+                                 </center>
+                         </h:column>
+                     </h:dataTable>
+                             </div>
+                        
+                         </h:form>
+                     </div>
+                      
+                      
+                      
+                           
+                       <div  class="#{adminE.vista[3]} container form-group admin-box col-xs-offset-2 col-xs-10 col-sm-offset-4 col-sm-6 col-md-offset-5 col-md-4">
+                    <h:form >
+                    
+                    <!--Campo de Nombre-->
+                    
+                    <div class="form-group ">
+                        <h:outputLabel  value="Nombre de Establecimeinto*" class="control-label form-inline toLeft" for="name"/>
+                        <b:inputText value="#{regEst.nombre}" id="name" class="form-control" validatorMessage="El nombre no cumple el formato">
+                        </b:inputText>
+                        <h:message class="bg-danger" for="name"></h:message>
+                    </div>  
+                    <div class="form-group">
+                        <h:outputLabel  value="Telefono*" class="control-label form-inline toLeft" for="tel"/>
+                        <b:inputText value="#{regEst.telefono}" id="tel" class="form-control" validatorMessage="El telefono no cumple">
+                        </b:inputText>
+                        <h:message class="bg-danger" for="tel"></h:message>
+                    </div>  
+                    <!--Campo UserName-->
+                    <h:message for="user" class="bg-danger small" ></h:message>
+                    <!--Campo Email-->
+                  
+                  
+                       
+                    <div class="form-inline">
+                        <h:outputLabel value="Dias de atencion*" class="control-label toLeft" for="bt1"/>
+                              <br/> 
+                            
+                              <div class="input-group  toLeft">
+                                <span class="input-group-addon ">Inicio:</span>
+                                <b:selectOneMenu ajax="" value="#{regEst.de}" class="dropdown  "> 
+                                    <f:selectItem class="item small " itemValue="1" itemLabel="Lunes"></f:selectItem>
+                                <f:selectItem class="item small" itemValue="2"  itemLabel="Martes"></f:selectItem> 
+                                <f:selectItem class="item small" itemValue="3"  itemLabel="Miercoles"></f:selectItem> 
+                                <f:selectItem class="item small" itemValue="4"  itemLabel="Jueves"></f:selectItem> 
+                                <f:selectItem class="item small" itemValue="5"  itemLabel="Viernes"></f:selectItem> 
+                                <f:selectItem class="item small" itemValue="6"  itemLabel="Sabado"></f:selectItem> 
+                                <f:selectItem class="item small" itemValue="7"  itemLabel="Domingo"></f:selectItem>
+                                
+                            </b:selectOneMenu>
+                          
+                              </div>
+                            
+                              <div  class=" input-group toRight">
+                             <span class="input-group-addon small ">Fin:</span>
+                             <b:selectOneMenu value="#{regEst.a}" class="dropdown form-control">
+                                 <f:selectItem class="item small " itemValue="1" itemLabel="Lunes"></f:selectItem>
+                                <f:selectItem class="item small" itemValue="2"  itemLabel="Martes"></f:selectItem> 
+                                <f:selectItem class="item small" itemValue="3"  itemLabel="Miercoles"></f:selectItem> 
+                                <f:selectItem class="item small" itemValue="4"  itemLabel="Jueves"></f:selectItem> 
+                                <f:selectItem class="item small" itemValue="5"  itemLabel="Viernes"></f:selectItem> 
+                                <f:selectItem class="item small" itemValue="6"  itemLabel="Sabado"></f:selectItem> 
+                                <f:selectItem class="item small" itemValue="7"  itemLabel="Domingo"></f:selectItem>
+                                <f:selectItem class="item small " noSelectionOption="true" itemLabel="Select.."></f:selectItem>
+                            </b:selectOneMenu>
+                                     
+                                  </div>
+               
+                      
+                </div>
+                    
+                    
+                    <!--Campo -->
+                    <br/><br/> <br/>
+                    <div class="form-group lborder " >
+                        <h:outputLabel value="Horario de Servicio dias normales*" class="control-label toLeft " for="cell"/>
+                        <b:panelGrid columns="2" class="">
+                            <b:formGroup class="toLeft  ">
+                                    <b:dateTimePicker label="Desde" value="#{regEst.HDOI}" class="small " show-date="false" show-time="true"></b:dateTimePicker>
+                             </b:formGroup>
+                             <b:formGroup class="toLeft">
+                                    <b:dateTimePicker label="Hasta" value="#{regEst.HDOF}" class="l small toRight " show-date="false" show-time="true"></b:dateTimePicker>
+                            </b:formGroup>
+                        </b:panelGrid>
+                        </div>
+          
+                    <div class="form-group lborder ">
+                        <h:outputLabel value="Horario de Servicio Domingos/Festivos*" class="control-label toLeft" for="cell"/><br/>
+                        <b:panelGrid columns="2" class="">
+                            <b:formGroup class="toLeft">
+                                    <b:dateTimePicker label="Desde" value="#{regEst.HDFI}" class="small " show-date="false" show-time="true"></b:dateTimePicker>
+                                 </b:formGroup>
+                             <b:formGroup class="toLeft">
+                                    <b:dateTimePicker label="Hasta" value="#{regEst.HDFF}" class="l small toRight " show-date="false" show-time="true"></b:dateTimePicker>
+                            </b:formGroup>
+                        </b:panelGrid>
+                        
+                    </div>
+                   
+                    <div class="form-group ">
+                        
+                        <h:outputLabel class="btn btn-default form-control" value="Seleccione ubicacion"></h:outputLabel>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel  class="control-label toLeft" value="Descripcion"></h:outputLabel>
+                        <b:inputTextarea  value="#{regEst.desc}" class="form-control "  maxlength="300"  placeholder="Introdusca la presentacion para su establecimeinto(300 letras)"/>
+                    </div>
+                    
+                    <!--Checkbox Acepto terminos y condiciones-->
+
+                    <br/>
+                    <!--Botones enviar cancelar-->
+                    <center>
+                        <div class="form-group col-xs-offset-1 col-xs-4">
+                            <h:commandButton actionListener="#{regEst.submit(log.codUser)}" class="btn btn-primary form-control" value="Guardar" ></h:commandButton>
+                        </div>
+                    </center>
+                    
+                    </h:form>
+                </div>
+
+                  
+         
+             
+      
+                 <div id="Reservas" class="container #{adminE.vista[1]} col-xs-offset-3 col-xs-8 admin-box " >
+                     <h:form>
+                         
+                         <div class=" control-label toLeft h3">
+                             <u>Listado de Reservas</u> </div>
+                         
+                         <div class="form-group">
+                         <h:dataTable columnClasses=""  class=" table table-responsive table-bordered table-condensed table-striped " var="dato">
+                             <h:column >
+                                 
+                             <f:facet name="header">
+                                 <center>
+                                 <h:outputText value="Codigo"  ></h:outputText></center>
+                             </f:facet>
+                              <center>
+                                 <h:outputText class="control-label center-block" value="#{dato}"></h:outputText>
+                                 </center>
+                         </h:column>
+                         <h:column>
+                             <f:facet name="header">
+                                 <center><h:outputText value="Cliente" ></h:outputText></center>
+                             </f:facet>
+                             <center><h:outputText value="#{dato}"></h:outputText></center>
+                         </h:column>
+                             <h:column>
+                             <f:facet name="header">
+                                 <center> <h:outputText value="Cancha" ></h:outputText></center>
+                             </f:facet>
+                             <center><h:outputText value="#{dato}"></h:outputText></center>
+                         </h:column>
+                             <h:column>
+                             <f:facet name="header">
+                                 <center><h:outputText value="Estado" ></h:outputText></center>
+                             </f:facet>
+                             <center><h:outputText value="#{dato}"></h:outputText></center>
+                         </h:column>
+                         <h:column>
+                             <f:facet name="header">
+                                 <center> <h:outputText value="Hora d inicio" ></h:outputText></center>
+                             </f:facet>
+                             <center><h:outputText value="#{dato}" ></h:outputText></center>
+                         </h:column>
+                         <h:column>
+                             <f:facet name="header">
+                                 <center><h:outputText value="Fecha" ></h:outputText></center>
+                             </f:facet>
+                             <center><h:outputText value="#{dato}"></h:outputText></center>
+                         </h:column>
+                         <h:column>
+                             <f:facet name="header">
+                                 <center> <h:outputText value="Horas" ></h:outputText></center>
+                             </f:facet>
+                             <center><h:outputText value="#{dato}"></h:outputText></center>
+                         </h:column>
+                             <h:column>
+                             <f:facet name="header">
+                                 <center> <h:outputText value="Total" ></h:outputText></center>
+                             </f:facet>
+                             <center><h:outputText value="#{dato}"></h:outputText></center>
+                         </h:column>
+                         <h:column>
+                             <f:facet name="header">
+                                 <center><h:outputText value="Opciones" ></h:outputText></center>
+                             </f:facet>
+                                 <center>
+                                     <span class=""></span>
+                                     <div class="dropdown">
+                                         <span type="button" class="glyphicon glyphicon-wrench btn btn-xs " data-toggle="dropdown" ><span class="caret"></span></span>
+                                         <ul class="dropdown-menu dropdown-menu-left">
+                                             <li class="small">
+                                                 <h:commandLink value="Confirmar" ></h:commandLink>
+                                             </li>
+                                             <li class="small">
+                                                 <h:commandLink value="Cancelar" ></h:commandLink>
+                                             </li>
+                                             
+                                         </ul>
+                                     </div>
+                                 </center>
+                         </h:column>
+                     </h:dataTable>
+                             </div>
+                        
+                         </h:form>
+                     </div>
+                      
+              </center>
+              
+         </ui:define>
+     </ui:composition>
+</html>
+
