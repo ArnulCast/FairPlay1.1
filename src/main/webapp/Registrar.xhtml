@@ -20,8 +20,8 @@
                   <div class="tab">
                       <div class="generalpadding">
                       <div class="form-group" >
-                         <img  alt="" src="#{registrar.path}" id="profile-image1"   class="img-circle img-responsive imaup"/> 
-                         <input id="profile-image-upload" class="hidden" type="file"  onchange="#{registrar.getimg(Fc, C, Value)}"  />
+                          <img  alt="" src="#{registrar.imgPerfil}" id="profile-image1"   class="img-circle img-responsive imaup"/> 
+                         <input id="profile-image-upload" class="hidden" type="file"/>
                          <div style="color:#999;" >click para insertar imagen de perfil</div>
                       </div>
 
@@ -29,7 +29,7 @@
                     <!--Campo UserName-->
                     <div class="form-group ">
                         <h:outputLabel value="Nombre de usuario" class="control-label toLeft" for="user"/>
-                        <b:inputText  id="user" value="#{registrar.userName}" class="form-control"></b:inputText>
+                        <b:inputText  id="user" value="#{registrar.nombre}"  class="form-control"></b:inputText>
                     </div>
                     <b:message for="user" class="bg-danger small" ></b:message>
                     
@@ -37,7 +37,7 @@
                     <!--Campo Email-->
                     <div class="form-group">
                         <h:outputLabel value="Carreo electronicio" class="control-label toLeft " for="mail"/>
-                        <b:inputText  id="mail" value="#{registrar.email}" class="form-control" validatorMessage="Correo no valido " placeholder="Example@mail.com">
+                        <b:inputText value="#{registrar.email}" id="mail" class="form-control" validatorMessage="Correo no valido " placeholder="Example@mail.com">
                             <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z]{2,})$"><!--Ojo Esta exprecion regular valida una sintaxis correcta del correo-->
                             </f:validateRegex>
                         </b:inputText>
@@ -47,14 +47,14 @@
                     
                     <!--Campo celular-->
                     <div class="form-group">
-                        <h:outputLabel value="Celular" class="control-label toLeft" for="cell"/>
-                        <b:inputText  id="cell"  value="#{registrar.celular}" class="form-control"></b:inputText>
+                        <h:outputLabel value="Celular"  class="control-label toLeft" for="cell"/>
+                        <b:inputText  id="cell" value="#{registrar.celular}"  class="form-control"></b:inputText>
                     </div>
                     
                     
                     <!--Campo Contraseña-->
                     <div class="form-group">
-                        <h:outputLabel value="Contraseña*" class="control-label toLeft" for="pass1"/>
+                        <h:outputLabel value="Contraseña" class="control-label toLeft" for="pass1"/>
                         <b:inputSecret value="#{registrar.contraseña}" id="pass1" autocomplete="off" class="form-control"/>
                     </div>
                     
@@ -62,14 +62,14 @@
                     <!--Campo confirmar contraseña-->
                     <div class="form-group">
                         <h:outputLabel value="Confirmar Contraseña*" class="control-label toLeft" for="pass2"/>
-                        <b:inputSecret  id="pass2"  autocomplete="off" class="form-control right "/>
+                        <b:inputSecret value="#{registrar.confirmarcontraseña}" id="pass2"  autocomplete="off" class="form-control right "/>
                     </div>
                     
                     
                     <!--Checkbox Acepto terminos y condiciones-->
                     <center class="form-inline #{log.visitante}">
                         <div class="form-group">
-                            <b:selectBooleanCheckbox class="checkbox-inline checkbox"></b:selectBooleanCheckbox>
+                            <b:selectBooleanCheckbox  class="checkbox-inline checkbox"></b:selectBooleanCheckbox>
                             <b>*Acepto</b>
                         </div>
                         <!--Link a Terminos y condiciones-->
@@ -85,7 +85,7 @@
                     <!--Botones enviar cancelar-->
                     
                         <b:commandLink class="mybtn  bg-danger col-lg-6  col-xs-6  " immediate="true" id="cancel" action="index.xhtml"  >Cancelar</b:commandLink>
-                        <b:commandLink immediate="false" class="mybtn bg-primary col-lg-6 col-xs-6 "  id="submit" >Registrar</b:commandLink>
+                        <b:commandLink immediate="false" class="mybtn bg-primary col-lg-6 col-xs-6 "  id="submit" action="#{registrar.submit()}">Registrar</b:commandLink>
                         <small>.</small>
                 </div>
                     

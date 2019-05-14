@@ -60,14 +60,7 @@ public class Login implements Serializable{
          try{
              Statement st=con.createStatement();
              ResultSet rs=st.executeQuery("select * from Usuarios where UserName='"+user+"' and Contraseña='"+pass+"';");
-             rs.next();
-             ObjUser.setCodUser(rs.getInt(1));
-             ObjUser.setNombre(rs.getString(2));
-             ObjUser.setUser(rs.getString(3));
-             ObjUser.setEmail(rs.getString(4));
-             ObjUser.setTelefono(rs.getString(5));
-             ObjUser.setImage(rs.getString(6));
-             ObjUser.setPoints(rs.getInt(8));             
+           
          }catch(SQLException e){
             ObjUser=null;
          }

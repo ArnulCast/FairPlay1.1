@@ -31,13 +31,7 @@ public class Log implements Serializable {
     private String admin,notAdmin;
     private String btn;
    public void submit(Usuario us) throws ClassNotFoundException, SQLException{
-         User=us.getUser();
-         Email=us.getEmail();
-         CodUser =us.getCodUser();
-         image=us.getImage();
-         System.out.println(image);
-        loged=true;
-        us=null;
+
     }
 
     public String getAdmin() {

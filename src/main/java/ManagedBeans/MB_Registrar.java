@@ -5,72 +5,122 @@
  */
 package ManagedBeans;
 
-import Control.Uploader;
-import Servicios.Conexion;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import Control.Contro_Usuario;
+import Modelos.Usuario;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.Part;
 
 /**
  *
  * @author Developer
  */
-@Named(value = "mB_Registrar")
+@Named(value = "registrar")
 @RequestScoped
 public class MB_Registrar {
 
-   private String Nombre,UserName,Email,Celular,Contraseña,fileContent;
-    private int codUser;
-    private static String path=null;
-    private Part image;
-    private static String load;
-    private Conexion cn;
-    public MB_Registrar() throws ClassNotFoundException, SQLException {
-        
-        if(path==null){
-                path="resources/IDataBase/User.png";
-                load="hide";}
+   private double Codigo;
+   private String Nombre,Email,ImgPerfil,Contraseña,confirmarcontraseña,celular;
+   private short Reputacion;
+   private Usuario User;
+   private boolean acepto;
+   private Control.Contro_Usuario Cu;
+    
+   public MB_Registrar(){
+       this.ImgPerfil="resources/img/User.png";
     }
 
-    public String getFileContent() {
-        return fileContent;
+   public void submit() throws Exception{
+       System.out.println("hey entre");
+       Cu=new Contro_Usuario();
+       Cu.crearUsuario(Nombre, Email, ImgPerfil, Contraseña, celular);
+   }
+   
+   
+   
+   
+    public String getCelular() {
+        return celular;
     }
 
-    public void setFileContent(String fileContent) {
-        this.fileContent = fileContent;
-    }
-
-    public void setPath(String path) {
-       this.path = path;
-    }
-
-    public void setImage(Part image) {
-        this.image = image;
-    }
     
     
- 
+    
+//
+//    public void submit() throws ClassNotFoundException, SQLException, IOException{
+//        String r="";
+//        System.out.println(image.getSubmittedFileName());
+//        Uploader u=new Uploader(image,UserName);
+//        u.upload();
+//        Connection con= new Conexion().getCn();
+//        Statement st= con.createStatement();
+//        ResultSet rs =st.executeQuery("select count(CodUsuario) from Usuarios");
+//        rs.next();
+//        codUser= rs.getInt(1)+1;
+//
+//        st.execute("exec insertUser "+codUser+",'"+Nombre+"','"
+//                +UserName+"','"+Email+"','"+Celular+"','"+path+"','"+Contraseña+"',"+0+","+null );
+//        try {
+//            u.upload();
+//        } catch (IOException ex) {
+//            
+//        }
+//        
+//    }
+//    public void updateimg(){
+//        if(image!=null){
+//            if(image.getContentType().toLowerCase().endsWith(".jpg") || image.getContentType().toLowerCase().endsWith(".png")){
+//            
+//                Uploader u=new Uploader(image,image.getSubmittedFileName());
+//                try {
+//                     u.upload();
+//                } catch (IOException ex) {
+//                }
+//                 path=image.getSubmittedFileName();
+//                System.out.println(path);
+//                }
+//            
+//            }
+//    }
+//
+//    public String getLoad() {
+//        return load;
+//    }
+//
+//    public int getCodUser() {
+//        return codUser;
+//    }
+//
+//    public void setCodUser(int codUser) {
+//        this.codUser = codUser;
+//    }
+//
+//    public void setLoad(String load) {
+//        this.load = load;
+//    }
+//        
+//   public String getimg(FacesContext Fc,UIComponent C,Object Value){
+//       if(Value!=null){
+//       System.out.println(Value.toString());}
+//       return path;
+//   }
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
+    public double getCodigo() {
+        return Codigo;
+    }
+
+    public void setCodigo(double Codigo) {
+        this.Codigo = Codigo;
+    }
+
     public String getNombre() {
         return Nombre;
     }
 
     public void setNombre(String Nombre) {
         this.Nombre = Nombre;
-    }
-
-    public String getUserName() {
-        return UserName;
-    }
-
-    public void setUserName(String UserName) {
-        this.UserName = UserName;
     }
 
     public String getEmail() {
@@ -81,12 +131,12 @@ public class MB_Registrar {
         this.Email = Email;
     }
 
-    public String getCelular() {
-        return Celular;
+    public String getImgPerfil() {
+        return ImgPerfil;
     }
 
-    public void setCelular(String Celular) {
-        this.Celular = Celular;
+    public void setImgPerfil(String ImgPerfil) {
+        this.ImgPerfil = ImgPerfil;
     }
 
     public String getContraseña() {
@@ -97,70 +147,27 @@ public class MB_Registrar {
         this.Contraseña = Contraseña;
     }
 
-    public String getPath() {
-        return path;
+    public String getConfirmarcontraseña() {
+        return confirmarcontraseña;
     }
 
-    public Part getImage() {
-        return image;
-    }
-    
-    
-    public void submit() throws ClassNotFoundException, SQLException, IOException{
-        String r="";
-        System.out.println(image.getSubmittedFileName());
-        Uploader u=new Uploader(image,UserName);
-        u.upload();
-        Connection con= new Conexion().getCn();
-        Statement st= con.createStatement();
-        ResultSet rs =st.executeQuery("select count(CodUsuario) from Usuarios");
-        rs.next();
-        codUser= rs.getInt(1)+1;
-
-        st.execute("exec insertUser "+codUser+",'"+Nombre+"','"
-                +UserName+"','"+Email+"','"+Celular+"','"+path+"','"+Contraseña+"',"+0+","+null );
-        try {
-            u.upload();
-        } catch (IOException ex) {
-            
-        }
-        
-    }
-    public void updateimg(){
-        if(image!=null){
-            if(image.getContentType().toLowerCase().endsWith(".jpg") || image.getContentType().toLowerCase().endsWith(".png")){
-            
-                Uploader u=new Uploader(image,image.getSubmittedFileName());
-                try {
-                     u.upload();
-                } catch (IOException ex) {
-                }
-                 path=image.getSubmittedFileName();
-                System.out.println(path);
-                }
-            
-            }
+    public void setConfirmarcontraseña(String confirmarcontraseña) {
+        this.confirmarcontraseña = confirmarcontraseña;
     }
 
-    public String getLoad() {
-        return load;
+    public short getReputacion() {
+        return Reputacion;
     }
 
-    public int getCodUser() {
-        return codUser;
+    public void setReputacion(short Reputacion) {
+        this.Reputacion = Reputacion;
     }
 
-    public void setCodUser(int codUser) {
-        this.codUser = codUser;
+    public boolean isAcepto() {
+        return acepto;
     }
 
-    public void setLoad(String load) {
-        this.load = load;
+    public void setAcepto(boolean acepto) {
+        this.acepto = acepto;
     }
-        
-   public String getimg(FacesContext Fc,UIComponent C,Object Value){
-       if(Value!=null){
-       System.out.println(Value.toString());}
-       return path;
-   }
 }

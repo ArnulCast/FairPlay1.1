@@ -21,7 +21,7 @@ import javax.servlet.http.Part;
  *
  * @author Developer
  */
-@Named(value = "registrar")
+@Named(value = "egistrar")
 @RequestScoped
 public class Registrar {
     private String Nombre,UserName,Email,Celular,Contraseña,fileContent;
