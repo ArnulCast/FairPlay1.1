@@ -79,7 +79,8 @@ and open the template in the editor.
   .frame{
       display: block;
       margin: auto;
-
+      padding-left: 30px;
+      padding-right: 30px;
       height: 500px;
       width: 300px;
       background-color: white;

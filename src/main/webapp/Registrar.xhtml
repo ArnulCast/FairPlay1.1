@@ -8,19 +8,19 @@
           >
      <ui:composition template="/WEB-INF/include/PrimaryTemplate.xhtml">
          <ui:define name="head">
-             <title>loging</title>
+             <title>Registrar</title>
              <h:outputStylesheet library="css" name="Registrar.css"/>
          </ui:define>
          <ui:define name="body"  >
              <!--Imagen de fondo-->
              <div class="Fondo"></div>
              <center>
-                <h:form  enctype="multipart/form-data">
+                <h:form >
                    
                   <div class="tab">
                       <div class="generalpadding">
                       <div class="form-group" >
-                          <img  alt="" src="#{registrar.imgPerfil}" id="profile-image1"   class="img-circle img-responsive imaup"/> 
+                          <img  alt="" src="#{regUsuario.imgPerfil}" id="profile-image1"   class="img-circle img-responsive imaup"/> 
                          <input id="profile-image-upload" class="hidden" type="file"/>
                          <div style="color:#999;" >click para insertar imagen de perfil</div>
                       </div>
@@ -29,15 +29,15 @@
                     <!--Campo UserName-->
                     <div class="form-group ">
                         <h:outputLabel value="Nombre de usuario" class="control-label toLeft" for="user"/>
-                        <b:inputText  id="user" value="#{registrar.nombre}"  class="form-control"></b:inputText>
+                        <b:inputText  id="user" value="#{regUsuario.nombre}"  class="form-control"></b:inputText>
                     </div>
                     <b:message for="user" class="bg-danger small" ></b:message>
                     
                     
                     <!--Campo Email-->
                     <div class="form-group">
-                        <h:outputLabel value="Carreo electronicio" class="control-label toLeft " for="mail"/>
-                        <b:inputText value="#{registrar.email}" id="mail" class="form-control" validatorMessage="Correo no valido " placeholder="Example@mail.com">
+                        <h:outputLabel value="Correo electronicio" class="control-label toLeft " for="mail"/>
+                        <b:inputText value="#{regUsuario.email}" id="mail" class="form-control" validatorMessage="Correo no valido " placeholder="Example@mail.com">
                             <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z]{2,})$"><!--Ojo Esta exprecion regular valida una sintaxis correcta del correo-->
                             </f:validateRegex>
                         </b:inputText>
@@ -48,21 +48,21 @@
                     <!--Campo celular-->
                     <div class="form-group">
                         <h:outputLabel value="Celular"  class="control-label toLeft" for="cell"/>
-                        <b:inputText  id="cell" value="#{registrar.celular}"  class="form-control"></b:inputText>
+                        <b:inputText  id="cell" value="#{regUsuario.celular}"  class="form-control"></b:inputText>
                     </div>
                     
                     
-                    <!--Campo Contraseña-->
+                    <!--Campo Contrasena-->
                     <div class="form-group">
-                        <h:outputLabel value="Contraseña" class="control-label toLeft" for="pass1"/>
-                        <b:inputSecret value="#{registrar.contraseña}" id="pass1" autocomplete="off" class="form-control"/>
+                        <h:outputLabel value="Contrasena" class="control-label toLeft" for="pass1"/>
+                        <b:inputSecret value="#{regUsuario.contrasena}" id="pass1" autocomplete="off" class="form-control"/>
                     </div>
                     
                     
-                    <!--Campo confirmar contraseña-->
+                    <!--Campo confirmar contrasena-->
                     <div class="form-group">
                         <h:outputLabel value="Confirmar Contraseña*" class="control-label toLeft" for="pass2"/>
-                        <b:inputSecret value="#{registrar.confirmarcontraseña}" id="pass2"  autocomplete="off" class="form-control right "/>
+                        <b:inputSecret value="#{regUsuario.confirmarcontrasena}" id="pass2"  autocomplete="off" class="form-control right "/>
                     </div>
                     
                     
@@ -85,7 +85,7 @@
                     <!--Botones enviar cancelar-->
                     
                         <b:commandLink class="mybtn  bg-danger col-lg-6  col-xs-6  " immediate="true" id="cancel" action="index.xhtml"  >Cancelar</b:commandLink>
-                        <b:commandLink immediate="false" class="mybtn bg-primary col-lg-6 col-xs-6 "  id="submit" action="#{registrar.submit()}">Registrar</b:commandLink>
+                        <b:commandLink immediate="false" class="mybtn bg-primary col-lg-6 col-xs-6 "  id="submit" action="#{regUsuario.submit()}">Registrar</b:commandLink>
                         <small>.</small>
                 </div>
                     

@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:b="http://bootsfaces.net/ui">
@@ -16,18 +15,22 @@
         <h:outputStylesheet name="bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
         <h:outputStylesheet library="css" name="TemplateStyle.css"></h:outputStylesheet>
         <h:outputStylesheet library="css" name="MyStyle.css"></h:outputStylesheet>
-        <h:outputStylesheet library="css" name="Mapa.css"/>
         <h:outputStylesheet library="css" name="Loginstyle.css"/>
        
         
         <ui:insert name="head">
-            <title>TuCanchaYa1</title>
+            <title>FairPlay</title>
+            
         </ui:insert>
     </h:head>
-    <h:body>       
+            <script>
+             #{sesion.alert}
+            </script>
+    <h:body onload ="#{sesion.resetLogin()}" > 
+       
               <h:form>
               <!--Barra de menu (No mover si no Tiene copia de seguridad)-->
-                <nav class="navbar navbar-inverse navbar-fixed-top  " onload="#{log.onLoad()}">
+                <nav class="navbar navbar-inverse navbar-fixed-top  " onload="">
                     <div class="container "  >
                     <div class="navbar-header" >
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-1">
@@ -36,7 +39,7 @@
                            <span class="icon-bar"></span>
                            <span class="icon-bar"></span>
                         </button>
-                        <h:commandLink class="navbar-brand" action="index.xhtml">TuCanchaYa</h:commandLink>
+                        <h:commandLink class="navbar-brand" action="index.xhtml">FairPlay</h:commandLink>
                     </div>
                         <div class="collapse navbar-collapse" id="navbar-1">
                             <ul id="navbar-1" class=" nav navbar-nav">
@@ -67,27 +70,29 @@
                                        </li>
                                 <li><h:commandLink>About Us</h:commandLink></li>
                             </ul>
-                            <ul class="nav right-padding navbar-nav navbar-right #{log.visitante}">
-                                <li><a id="LogingTrigger" class="" href="#Login" data-toggle="modal">Login</a></li>
+                            <ul class="nav right-padding navbar-nav navbar-right #{sesion.unloged} ">
+                                <li><a id="LogingTrigger" class="" href="#Login" data-toggle="modal">Login</a>
+                                </li>
+                                
                                 <li><h:commandLink class="small" action="Registrar.xhtml" immediate="true"><u>Registrate</u></h:commandLink></li>
                              </ul>
-                            <ul class="nav right-padding navbar-nav navbar-right #{log.usuario}">
+                            <ul class="nav right-padding navbar-nav navbar-right #{sesion.loged}">
                                 <li>
                                     <div class=" form-inline">
                                         <div class=" form-group">
-                                            <img  src="#{log.image}" class="imageuser img-circle"/>
+                                            <img  src="#{sesion.imgPerfil}" class="imageuser img-circle"/>
                                         </div>
                                         <div class="form-group">
                                             <div class="dropdown adjust">
-                                                <span type="button" class="btn   menu dropdown-toggle" data-toggle="dropdown">
-                                                    <b><h:outputLabel  value="#{log.user}"></h:outputLabel></b>
+                                                <span type="button"  class="btn   menu dropdown-toggle" data-toggle="dropdown">
+                                                    <b><h:outputLabel  >#{sesion.nombre}</h:outputLabel></b>
                                                     <span class="caret"></span>
                                                 </span>
-                                                <ul class="dropdown-menu" role="menu" id="menu" >
-                                                    <li class="#{log.admin}">
-                                                        <h:commandLink class="small" value="Administrar Establecimiento" action="PerfilAdmin.xhtml"/>
+                                                <ul class="dropdown-menu " role="menu" id="menu" >
+                                                    <li class="">
+                                                        <h:commandLink class="small" value="Administrar Establecimiento" action="Admin.xhtml"/>
                                                     </li>
-                                                    <li class="#{log.notAdmin}">
+                                                    <li class="">
                                                         <h:commandLink class="small" value="Registrar Establecimiento" action="Reg_Etbmo.xhtml"/>
                                                     </li>
                                                     <li class="">
@@ -97,7 +102,7 @@
                                                         <h:commandLink class="small"  value="Reservas"/>
                                                     </li>
                                                     <li class="">
-                                                        <h:commandLink class="small"  value="Salir" action="index.xhtml" actionListener="#{log.close}"/>
+                                                        <h:commandLink class="small"  value="Salir" actionListener="#{sesion.Salir}" action="index.xhtml" />
                                                     </li>
                                                 </ul>
                                             </div>
@@ -123,18 +128,16 @@
                                   
                               </img>
                               </center>
+                            
                        <div class="form-group">
-                        <h:outputLabel value="Nombre de usuario" class="control-label form-inline toLeft" for="name"  />
-                        <b:inputText    id="name" class="input-group form-control" placeholder="Nombre de usuario"/>
+                        <h:outputLabel value="Email " class=" control-label form-inline toLeft" for="name"  />
+                        <b:inputText    id="name" value="#{sesion.testEmail}" class="input-group form-control" placeholder="Ejemplo@mail.com" required="True" required-message="LLenar Campo" />
           
                     </div>
                            <div class="form-group ">
                         <h:outputLabel value="Contraseña" class="control-label toLeft" for="pass"/>
-                        
-                        <b:inputSecret label=""  placeholder=""  id="pass" autocomplete="off" class="form-control "/>
-                        
-                        
-                    </div>
+                        <b:inputSecret label="" value="#{sesion.testPass}" validator="#{sesion.foud()}"  validator-message="EMail o Contraseña incorrectos" required="True" required-message="LLenar Campo" placeholder=""  id="pass" autocomplete="off" class="form-control "/>
+                           </div>
                               <center>
                           <div class="form-inline">
                          <b:selectBooleanCheckbox class="checkbox-inline checkbox"></b:selectBooleanCheckbox>
@@ -148,18 +151,22 @@
                  
                    <div class="toBot form-inline ">
                        
-                          <a class="mybtn  bg-danger col-lg-6  col-xs-6 form-inline " id="cancel" data-dismiss="modal" >Cancelar</a>
-                          <b:commandLink class="mybtn bg-primary col-lg-6 col-xs-6 form-inline"  id="confirm" >Login</b:commandLink>
+                          <a class="mybtn  bg-danger col-lg-6  col-xs-6 form-inline " id="cancel" data-dismiss="modal"  >Cancelar</a>
+                          <h:commandLink class="mybtn bg-primary col-lg-6 col-xs-6 form-inline " immediate="false"  actionListener="#{sesion.Login()}" id="confirm"  >Login</h:commandLink>
                    </div>
                    
  
                  
                  </div>
             </h:form>
+        
+            
             <h:outputScript name="bootstrap-3.3.7-dist/js/bootstrap.min.js"/>
             <!--<h:outputScript library="js" name="JQuery.js"/>-->
+            
         <ui:insert name="body"/>
-
+        
     </h:body>
+    
 </html>
 

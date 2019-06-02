@@ -11,6 +11,7 @@ and open the template in the editor.
 .Mapa{
     height: 500px;
     width: 100%;
+    background: white;
 }
 .wte{
     background-color: white;

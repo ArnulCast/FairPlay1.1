@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ManagedBeans;
+package JSF.ManagedBeans;
 
 import Servicios.Conexion;
 import java.sql.Connection;
@@ -19,9 +19,9 @@ import javax.enterprise.context.RequestScoped;
  *
  * @author Developer
  */
-@Named(value = "regEst")
+@Named(value = "reg_Est")
 @RequestScoped
-public class RegEst {
+public class Reg_Est {
     
     private String Nombre,Telefono,Direccion,desc,Stipo;
     private Date HDOI,HDOF,HDFI,HDFF;
@@ -87,7 +87,7 @@ public class RegEst {
 
     
     
-    public RegEst() {
+    public Reg_Est() {
     }
 
     public String getNombre() {

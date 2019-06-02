@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ManagedBeans;
+package JSF.ManagedBeans;
 
 import Servicios.Conexion;
 import java.sql.Connection;

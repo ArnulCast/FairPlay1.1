@@ -13,6 +13,8 @@ and open the template in the editor.
     max-width: 400px;
     height:auto;
     background-color: white;
+    padding-left:  30px;
+    padding-right: 30px;
     box-shadow: 1px 1px 2px #000;
 }
 .generalpadding{

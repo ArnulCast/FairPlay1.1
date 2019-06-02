@@ -6,34 +6,34 @@
 package JPA.Entidades;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-
-/**
- *
- * @author Developer
- */
+import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "Usuario")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "JPA_Usuario.findAll", query = "SELECT j FROM JPA_Usuario j")
-    , @NamedQuery(name = "JPA_Usuario.findByCodigo", query = "SELECT j FROM JPA_Usuario j WHERE j.codigo = :codigo")
-    , @NamedQuery(name = "JPA_Usuario.findByNombre", query = "SELECT j FROM JPA_Usuario j WHERE j.nombre = :nombre")
-    , @NamedQuery(name = "JPA_Usuario.findByEmail", query = "SELECT j FROM JPA_Usuario j WHERE j.email = :email")
-    , @NamedQuery(name = "JPA_Usuario.findByCelular", query = "SELECT j FROM JPA_Usuario j WHERE j.celular = :celular")
-    , @NamedQuery(name = "JPA_Usuario.findByImgPerfil", query = "SELECT j FROM JPA_Usuario j WHERE j.imgPerfil = :imgPerfil")
-    , @NamedQuery(name = "JPA_Usuario.findByContrase\u00f1a", query = "SELECT j FROM JPA_Usuario j WHERE j.contrase\u00f1a = :contrase\u00f1a")
-    , @NamedQuery(name = "JPA_Usuario.findByReputacion", query = "SELECT j FROM JPA_Usuario j WHERE j.reputacion = :reputacion")})
-public class JPA_Usuario implements Serializable {
+//@NamedQueries({
+//    @NamedQuery(name = "Usuario.findAll", query = "SELECT j FROM Usuario j")
+//    , @NamedQuery(name = "Usuario.findByCodigo", query = "SELECT j FROM JPA_Usuario j WHERE j.codigo = :codigo")
+//    , @NamedQuery(name = "Usuario.findByNombre", query = "SELECT j FROM JPA_Usuario j WHERE j.nombre = :nombre")
+//    , @NamedQuery(name = "Usuario.findByEmail", query = "SELECT j FROM JPA_Usuario j WHERE j.email = :email")
+//    , @NamedQuery(name = "Usuario.findByCelular", query = "SELECT j FROM JPA_Usuario j WHERE j.celular = :celular")
+//    , @NamedQuery(name = "Usuario.findByImgPerfil", query = "SELECT j FROM JPA_Usuario j WHERE j.imgPerfil = :imgPerfil")
+//    , @NamedQuery(name = "Usuario.findByContrase\u00f1a", query = "SELECT j FROM JPA_Usuario j WHERE j.contrase\u00f1a = :contrase\u00f1a")
+//    , @NamedQuery(name = "Usuario.findByReputacion", query = "SELECT j FROM JPA_Usuario j WHERE j.reputacion = :reputacion")})
+public class Usuario implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codAdmin")
+    private List<Establecimiento> establecimientoList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -64,23 +64,23 @@ public class JPA_Usuario implements Serializable {
     @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "Contrase\u00f1a")
-    private String contraseña;
+    private String contrasena;
     @Column(name = "Reputacion")
     private Short reputacion;
 
-    public JPA_Usuario() {
+    public Usuario() {
     }
 
-    public JPA_Usuario(Long codigo) {
+    public Usuario(Long codigo) {
         this.codigo = codigo;
     }
 
-    public JPA_Usuario(Long codigo, String nombre, String email, String celular, String contraseña) {
+    public Usuario(Long codigo, String nombre, String email, String celular, String contrasena) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.email = email;
         this.celular = celular;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
     }
 
     public Long getCodigo() {
@@ -123,12 +123,12 @@ public class JPA_Usuario implements Serializable {
         this.imgPerfil = imgPerfil;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public Short getReputacion() {
@@ -149,10 +149,10 @@ public class JPA_Usuario implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof JPA_Usuario)) {
+        if (!(object instanceof Usuario)) {
             return false;
         }
-        JPA_Usuario other = (JPA_Usuario) object;
+        Usuario other = (Usuario) object;
         if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
             return false;
         }
@@ -161,7 +161,16 @@ public class JPA_Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "JPA.Entidades.JPA_Usuario[ codigo=" + codigo + "\n ]"+nombre;
+        return "JPA.Entidades.JPA_Usuario[ codigo=" + codigo + " ]";
+    }
+
+    @XmlTransient
+    public List<Establecimiento> getEstablecimientoList() {
+        return establecimientoList;
+    }
+
+    public void setEstablecimientoList(List<Establecimiento> establecimientoList) {
+        this.establecimientoList = establecimientoList;
     }
     
 }

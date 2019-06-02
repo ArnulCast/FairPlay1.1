@@ -9,7 +9,7 @@
         
     <ui:composition template="/WEB-INF/include/PrimaryTemplate.xhtml">
         <ui:define name="head">
-            
+            <h:outputStylesheet  library="css" name="Mapa.css"></h:outputStylesheet>
         </ui:define>
         <ui:define name="body">
             <img  src="resources/img/Ball.jpg"  id="fondo" class="visible-lg visible-md visible-sm  " />
@@ -51,7 +51,7 @@
                           </div>
                        </b:panelGrid>
                        <b:panelGrid columns="1" span="8" class="" offset="2"   >
-                          <div id="map" class="Mapa"></div>
+                           <div id="map" class="Mapa"></div>
                         </b:panelGrid>                        
                         <b:panelGrid columns="1" large-screen="8" small-screen="12" offset-lg="2" offset-md="2" col-md="8">
                           <a class="mybtn  bg-danger col-lg-6  col-xs-6 " id="cancel" data-dismiss="modal" >Cancelar</a>
@@ -71,16 +71,16 @@
                         <h:commandLink class=" items btn  btn-primary  "><span class="glyphicon glyphicon-search"></span></h:commandLink>
                     </div>
                     </center>
+                     
                 </h:form>
                   </div>
 
 <!--///////////////////Script del mapa-->
 <script>
-       var map;
+            var map;
        var marker;
        var ubicacion={lat: 10.40, lng:-75.50};
       function initMap() {
-        
         var myLatLng = {lat: 10.40, lng:-75.50};
          map = new google.maps.Map(document.getElementById('map'),{
           center: myLatLng,
@@ -101,22 +101,14 @@
         
         var pos=document.getElementById("Direccion");
         pos.textContent=event.latLng;
-        
-        
-        
         });
-         
-       
-        
-        
       }
-        
     </script>
-           <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCqF7kxFFYlW0pZlhXzZna58GFEFBOOPk" callback="initMap"
-                   async="defer">
-           </script>  
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCqF7kxFFYlW0pZlhXzZna58GFEFBOOPk&amp;callback=initMap"></script>
+        
          </ui:define>  
         
     </ui:composition>
+    
 </html>
 
