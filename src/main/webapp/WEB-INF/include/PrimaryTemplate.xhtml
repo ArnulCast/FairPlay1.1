@@ -87,8 +87,8 @@
                                                     <span class="caret"></span>
                                                 </span>
                                                 <ul class="dropdown-menu " role="menu" id="menu" >
-                                                    <li class="">
-                                                        <h:commandLink class="small"  value="Administrar Establecimiento" action="Admin.xhtml"/>
+                                                    <li class="#{sesion.isAdmin()} ">
+                                                        <h:commandLink class="small "  value="Administrar Establecimiento" action="Admin.xhtml"/>
                                                     </li>
                                                     <li class="">
                                                         <h:commandLink class="small" value="Registrar Establecimiento" action="Reg_Etbmo.xhtml"/>
