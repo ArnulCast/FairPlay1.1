@@ -5,6 +5,7 @@
  */
 package JPA.Entidades;
 
+import JPA.Entidades.Establecimiento;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -12,28 +13,32 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+
+/**
+ *
+ * @author Developer
+ */
 @Entity
 @Table(name = "Usuario")
-@XmlRootElement
+//@XmlRootElement
 //@NamedQueries({
-//    @NamedQuery(name = "Usuario.findAll", query = "SELECT j FROM Usuario j")
-//    , @NamedQuery(name = "Usuario.findByCodigo", query = "SELECT j FROM JPA_Usuario j WHERE j.codigo = :codigo")
-//    , @NamedQuery(name = "Usuario.findByNombre", query = "SELECT j FROM JPA_Usuario j WHERE j.nombre = :nombre")
-//    , @NamedQuery(name = "Usuario.findByEmail", query = "SELECT j FROM JPA_Usuario j WHERE j.email = :email")
-//    , @NamedQuery(name = "Usuario.findByCelular", query = "SELECT j FROM JPA_Usuario j WHERE j.celular = :celular")
-//    , @NamedQuery(name = "Usuario.findByImgPerfil", query = "SELECT j FROM JPA_Usuario j WHERE j.imgPerfil = :imgPerfil")
-//    , @NamedQuery(name = "Usuario.findByContrase\u00f1a", query = "SELECT j FROM JPA_Usuario j WHERE j.contrase\u00f1a = :contrase\u00f1a")
-//    , @NamedQuery(name = "Usuario.findByReputacion", query = "SELECT j FROM JPA_Usuario j WHERE j.reputacion = :reputacion")})
+////    @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
+//    @NamedQuery(name = "Usuario.findByCodigo", query = "SELECT u FROM Usuario u WHERE u.codigo = :codigo")
+//    , @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre")
+//    , @NamedQuery(name = "Usuario.findByEmail", query = "SELECT u FROM Usuario u WHERE u.email = :email")
+//    , @NamedQuery(name = "Usuario.findByCelular", query = "SELECT u FROM Usuario u WHERE u.celular = :celular")
+//    , @NamedQuery(name = "Usuario.findByImgPerfil", query = "SELECT u FROM Usuario u WHERE u.imgPerfil = :imgPerfil")
+//    , @NamedQuery(name = "Usuario.findByContrase\u00f1a", query = "SELECT u FROM Usuario u WHERE u.contrase\u00f1a = :contrase\u00f1a")
+//    , @NamedQuery(name = "Usuario.findByReputacion", query = "SELECT u FROM Usuario u WHERE u.reputacion = :reputacion")})
 public class Usuario implements Serializable {
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codAdmin")
-    private List<Establecimiento> establecimientoList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -67,6 +72,8 @@ public class Usuario implements Serializable {
     private String contrasena;
     @Column(name = "Reputacion")
     private Short reputacion;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codAdmin")
+    private List<Establecimiento> establecimientoList;
 
     public Usuario() {
     }
@@ -75,12 +82,12 @@ public class Usuario implements Serializable {
         this.codigo = codigo;
     }
 
-    public Usuario(Long codigo, String nombre, String email, String celular, String contrasena) {
+   public Usuario(Long codigo, String nombre, String email, String celular, String contraseña) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.email = email;
         this.celular = celular;
-        this.contrasena = contrasena;
+        this.contrasena = contraseña;
     }
 
     public Long getCodigo() {
@@ -139,6 +146,15 @@ public class Usuario implements Serializable {
         this.reputacion = reputacion;
     }
 
+    @XmlTransient
+    public List<Establecimiento> getEstablecimientoList() {
+        return establecimientoList;
+    }
+
+    public void setEstablecimientoList(List<Establecimiento> establecimientoList) {
+        this.establecimientoList = establecimientoList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -161,16 +177,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "JPA.Entidades.JPA_Usuario[ codigo=" + codigo + " ]";
-    }
-
-    @XmlTransient
-    public List<Establecimiento> getEstablecimientoList() {
-        return establecimientoList;
-    }
-
-    public void setEstablecimientoList(List<Establecimiento> establecimientoList) {
-        this.establecimientoList = establecimientoList;
+        return "JPA.Control.Usuario[ codigo=" + codigo + " ]";
     }
     
 }

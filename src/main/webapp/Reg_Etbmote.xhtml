@@ -22,13 +22,13 @@
                     <div class="generalpadding">
                     <div class="form-group ">
                         <h:outputLabel  value="Nombre de Establecimeinto*" class="control-label form-inline toLeft" for="name"/>
-                        <b:inputText value="#{reg_Est.nombre}" id="name" class="form-control" validatorMessage="El nombre no cumple el formato">
+                        <b:inputText value="#{regEst.nombre}" id="name" class="form-control" validatorMessage="El nombre no cumple el formato">
                         </b:inputText>
                         <h:message class="bg-danger" for="name"></h:message>
                     </div>  
                     <div class="form-group">
                         <h:outputLabel  value="Telefono*" class="control-label form-inline toLeft" for="tel"/>
-                        <b:inputText value="#{reg_Est.telefono}" id="tel" class="form-control" validatorMessage="El telefono no cumple">
+                        <b:inputText value="#{regEst.telefono}" id="tel" class="form-control" validatorMessage="El telefono no cumple">
                         </b:inputText>
                         <h:message class="bg-danger" for="tel"></h:message>
                     </div>  
@@ -44,7 +44,7 @@
                             
                               <div class="input-group  toLeft">
                                 <span class="input-group-addon ">Desde:</span>
-                                <b:selectOneMenu ajax="" value="#{reg_Est.diaS1}" class="dropdown  "> 
+                                <b:selectOneMenu ajax="" value="#{regEst.de}" class="dropdown  "> 
                                     <f:selectItem class="item small " itemValue="1" itemLabel="Lunes"></f:selectItem>
                                 <f:selectItem class="item small" itemValue="2"  itemLabel="Martes"></f:selectItem> 
                                 <f:selectItem class="item small" itemValue="3"  itemLabel="Miercoles"></f:selectItem> 
@@ -59,7 +59,7 @@
                             
                               <div  class=" input-group toRight">
                              <span class="input-group-addon small ">Hasta:</span>
-                             <b:selectOneMenu value="#{reg_Est.diaS2}" class="dropdown form-control">
+                             <b:selectOneMenu value="#{regEst.a}" class="dropdown form-control">
                                  <f:selectItem class="item small " itemValue="1" itemLabel="Lunes"></f:selectItem>
                                 <f:selectItem class="item small" itemValue="2"  itemLabel="Martes"></f:selectItem> 
                                 <f:selectItem class="item small" itemValue="3"  itemLabel="Miercoles"></f:selectItem> 
@@ -83,10 +83,10 @@
                         <br/><br/>
                         
                         <div class="toLeft col-lg-6">
-                            <b:dateTimePicker  value="#{reg_Est.horario1}" class="" show-date="false" show-time="true"></b:dateTimePicker>
+                                    <b:dateTimePicker  value="#{regEst.HDOI}" class="" show-date="false" show-time="true"></b:dateTimePicker>
                             </div>
                         <div class="toRight col-lg-6">
-                            <b:dateTimePicker value="#{reg_Est.horario2}"  class=" " show-date="false" show-time="true"></b:dateTimePicker>
+                            <b:dateTimePicker value="#{regEst.HDOF}"  class=" " show-date="false" show-time="true"></b:dateTimePicker>
                          </div>
                         
                         </div>
@@ -94,21 +94,21 @@
                         <b:accordion expanded-panels="panel1,panel3" class="accordion">
                         <b:panel id="panel1" title="Servicios adicionales">
                             <b:row class="row-table">
-                                <b:column col-lg="6">Servicio</b:column><b:column col-lg="4">Gratis</b:column>
+                                <b:column col-lg="4">Servicio</b:column><b:column col-lg="4">Gratis</b:column><b:column col-lg="4">Precio</b:column>
                             </b:row>
                             <b:row  class="row-table" >
-                                <b:column col-lg="6">WiFi</b:column><b:column col-lg="4"><b:selectBooleanCheckbox value="#{reg_Est.wifi}"/></b:column>
+                                <b:column col-lg="4">WiFi</b:column><b:column col-lg="4"><b:selectBooleanCheckbox/></b:column><b:column col-lg="4"><b:inputText class="tablein"/></b:column>
                             </b:row>
                             <b:row  class="row-table" >
-                                <b:column col-lg="6">Estacionamiento</b:column><b:column col-lg="4"><b:selectBooleanCheckbox value="#{reg_Est.parking}"/></b:column>
+                                <b:column col-lg="4">Estacionamiento</b:column><b:column col-lg="4"><b:selectBooleanCheckbox/></b:column><b:column col-lg="4"><b:inputText class="tablein"/></b:column>
                             </b:row>
                             <b:row  class="row-table" >
-                                <b:column col-lg="6">Alquiler de equiops</b:column><b:column col-lg="4"><b:selectBooleanCheckbox value="#{reg_Est.alquiler}"/></b:column>
+                                <b:column col-lg="4">Alquiler de equiops</b:column><b:column col-lg="4"><b:selectBooleanCheckbox/></b:column><b:column col-lg="4"><b:inputText class="tablein"/></b:column>
                             </b:row>
                             <b:row  class="row-table" >
-                                <b:column col-lg="6">venta interna</b:column><b:column col-lg="4"><b:selectBooleanCheckbox value="#{reg_Est.venta}"/></b:column>
+                                <b:column col-lg="4">venta interna</b:column><b:column col-lg="4"><b:selectBooleanCheckbox/></b:column><b:column col-lg="4"><b:inputText class="tablein"/></b:column>
                             </b:row><b:row  class="row-table" >
-                                <b:column col-lg="6">Obsequios</b:column><b:column col-lg="8"><b:inputText class="tablein" value="#{reg_Est.obsequios}"/></b:column>
+                                <b:column col-lg="4">Obsequios</b:column><b:column col-lg="8"><b:inputText class="tablein"/></b:column>
                             </b:row>
                         </b:panel>
                     </b:accordion>
@@ -120,7 +120,7 @@
                     </div>
                     <div class="form-group">
                         <h:outputLabel  class="control-label toLeft" value="Descripcion"></h:outputLabel>
-                        <b:inputTextarea  value="#{reg_Est.descripcion}" class="form-control "   maxlength="300"  placeholder="Introdusca la presentacion para su establecimeinto(300 letras)"/>
+                        <b:inputTextarea  value="#{regEst.desc}" class="form-control "   maxlength="300"  placeholder="Introdusca la presentacion para su establecimeinto(300 letras)"/>
                     </div>
                     
                     <!--Checkbox Acepto terminos y condiciones-->
@@ -138,7 +138,7 @@
                     <!--Botones enviar cancelar-->
                   
                         <b:commandLink class="mybtn  bg-danger col-lg-6  col-xs-6  " immediate="true" id="cancel" action="index.xhtml"  >Cancelar</b:commandLink>
-                        <b:commandLink immediate="false" class="mybtn bg-primary col-lg-6 col-xs-6 " actionListener="#{reg_Est.submit(sesion.codigo)}" id="submit" >Registrar</b:commandLink>
+                        <b:commandLink immediate="false" class="mybtn bg-primary col-lg-6 col-xs-6 "  id="submit" >Registrar</b:commandLink>
                     <br/>
                     </div>
                     </h:form>

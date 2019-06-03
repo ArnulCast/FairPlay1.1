@@ -13,17 +13,17 @@
         <ui:define name="body" >
             
             <div  id="fondo"  class="Fondo"/>
-            <b:column col-lg="2" id="h-navbar" class="container-fluid">
-                <h:form>
+            <b:column col-lg="2" hidden="#{sesion.alterNotLoged}" id="h-navbar" class="container-fluid">
+                <h:form >
                 <center>
                     <div><b:image value="resources/img/UserAdmin.jpg" class="IUser img-circle "/></div>
                     <div><b:commandLink>Cambiar imagen</b:commandLink></div>
                 </center>  
                     
-                    <div class="barTit mybtn " data-toggle="collapse" data-target="#use">
+                    <div  class="barTit mybtn " data-toggle="collapse" data-target="#use">
                         <div class="textTiltle"><b:label value="UserName" class="underline  textTiltle" style="background-color: #ddd"/></div>
                     </div>
-                    <div class="barBody collapse panel-collapse" id="use">
+                    <div class="barBody collapse panel-collapse" id="use" >
                         <ul class="list-group">
                             <li class="list-group-item"><b:commandLink value="Reservas"></b:commandLink></li>
                             <li class="list-group-item"><b:commandLink value="Ubicacion Preferida"></b:commandLink></li>

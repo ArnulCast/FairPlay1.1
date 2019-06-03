@@ -5,13 +5,17 @@
  */
 package JSF.ManagedBeans;
 
-import Servicios.Conexion;
-import java.sql.Connection;
-import java.sql.ResultSet;
+import JPA.Control.EstablecimientoJpaController;
+import JPA.Control.ServiciosJpaController;
+import JPA.Control.UbicacionJpaController;
+import JPA.Control.UsuarioJpaController;
+import JPA.Entidades.Establecimiento;
+import JPA.Entidades.Servicios;
+import JPA.Entidades.Ubicacion;
+import JPA.Entidades.Usuario;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Time;
-import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 
@@ -23,126 +27,215 @@ import javax.enterprise.context.RequestScoped;
 @RequestScoped
 public class Reg_Est {
     
-    private String Nombre,Telefono,Direccion,desc,Stipo;
-    private Date HDOI,HDOF,HDFI,HDFF;
-    private String De="",A="";
-    int user,cal,cod;
-    private Connection con;
+    private Integer codigo;
+    private String nombre;
+    private String telefono;
+    private String descripcion;
+    private long codAdmin;
+    private UsuarioJpaController Cu;
 
-    public String getDe() {
-        return De;
+    private Boolean wifi;
+    private Boolean parking;
+    private Boolean alquiler;
+    private Boolean venta;
+    private String obsequios;
+    private String diaS1,diaS2;
+    private String horario1,horario2;
+    private float latitud,longitud;
+    
+    /** Entidades*/
+    private Establecimiento estb;
+    private Servicios servicio;
+    private Ubicacion ubicacion;
+    
+    //Controladores
+    private ServiciosJpaController Sc;
+    private EstablecimientoJpaController Ec;
+    private UbicacionJpaController ubc;
+    
+    public void submit(long CodUser) throws ClassNotFoundException, SQLException, Exception{
+        this.crearEstb(CodUser);
+        this.CrearUbicacion();
+        this.crearServicio();
+
     }
-
-    public void setDe(String De) {
-        this.De = De;
+    private Servicios crearServicio() throws Exception{
+        servicio=new Servicios(this.codigo,this.wifi,this.parking,this.alquiler,this.venta,this.obsequios);
+        Sc= new ServiciosJpaController();
+        try {
+            Sc.create(servicio);
+            return servicio;
+        } catch (Exception ex) {
+            throw ex;
+        } 
+        
     }
-
-    public String getA() {
-        return A;
+    private Ubicacion CrearUbicacion() throws Exception{
+        ///agregar condicion por que null es permitido
+        ubicacion=new Ubicacion(this.codigo,latitud,longitud);
+        ubc=new UbicacionJpaController();
+        try {
+            ubc.create(ubicacion);
+            return ubicacion;
+        } catch (Exception ex) {
+            throw ex;
+            
+        }
+        
     }
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
-    public void setA(String A) {
-        this.A = A;
-    }
-
-    public Date getHDOI() {
-        return HDOI;
-    }
-
-    public void setHDOI(Date HDOI) {
-        this.HDOI = HDOI;
-    }
-
-    public Date getHDOF() {
-        return HDOF;
-    }
-
-    public void setHDOF(Date HDOF) {
-        this.HDOF = HDOF;
-    }
-
-    public Date getHDFI() {
-        return HDFI;
-    }
-
-    public void setHDFI(Date HDFI) {
-        this.HDFI = HDFI;
-    }
-
-    public Date getHDFF() {
-        return HDFF;
-    }
-
-    public void setHDFF(Date HDFF) {
-        this.HDFF = HDFF;
+    private void crearEstb(long idUser){
+        Ec=new EstablecimientoJpaController();
+        this.codigo=Ec.getEstablecimientoCount()+1;
+        Cu=new UsuarioJpaController();
+        estb =new Establecimiento(this.codigo,idUser,this.nombre,this.telefono,this.diaS1+this.diaS2,this.horario1+this.horario2,this.descripcion);
+        try {
+            Ec.create(estb);
+        } catch (Exception ex) {
+            Logger.getLogger(Reg_Est.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
     }
 
     
     
-    public Reg_Est() {
+    public int getCodigo(){
+        return codigo;
+    }
+
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public void setNombre(String nombre) {
-        this.Nombre = nombre;
+        this.nombre = nombre;
     }
 
     public String getTelefono() {
-        return Telefono;
+        return telefono;
     }
 
-    public void setTelefono(String Telefono) {
-        this.Telefono = Telefono;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
-    public String getDireccion() {
-        return Direccion;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setDireccion(String Direccion) {
-        this.Direccion = Direccion;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
 
-
-    public void submit(int CodUser) throws ClassNotFoundException, SQLException{
-        con=new Conexion().getCn();
-        Statement st=con.createStatement();
-        
-        ResultSet rs=st.executeQuery("select count(*) from HoraDiasOrdinarios");
-        rs.next();
-        int codHDO =rs.getInt(1)+1;
-        st.execute("exec insertHDO "+codHDO+","+"'"+c(HDOI)+"'"+","+"'"+c(HDOF)+"'"+","+De+","+A);
-        
-        rs=st.executeQuery("select count(*) from HorarioDiasFestivos");
-        rs.next();
-        int codHDF =rs.getInt(1)+1;
-        st.execute("exec insertHDF "+codHDF+","+"'"+c(HDFI)+"'"+","+"'"+c(HDFF)+"'");
-        
-        rs=st.executeQuery("select count(*) from Calendario");
-        rs.next();
-        cal=rs.getInt(1)+1;
-        st.execute("exec insertCal "+cal+","+codHDO+","+codHDF);
-        
-        rs=st.executeQuery("select count(*) from Establecimiento");
-        rs.next();
-        cod= rs.getInt(1)+1;
-        st.execute("exec insertEstable "+cod+",'"+Nombre+"','"+Direccion+"',"+CodUser+",'"+Telefono+"',"+cal+",'"+desc+"'");
-        st.execute("exec updateRol "+CodUser);
+    public void setCodAdmin(int codAdmin) {
+        this.codAdmin = codAdmin;
     }
-   private Time c(Date d){
-       
-       return new Time(d.getTime());
-   }
+
+    public long getCodAdmin() {
+        return codAdmin;
+    }
+
+    public void setCodAdmin(long codAdmin) {
+        this.codAdmin = codAdmin;
+    }
+
+    public Servicios getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(Servicios servicio) {
+        this.servicio = servicio;
+    }
+
+    public Boolean getWifi() {
+        return wifi;
+    }
+
+    public void setWifi(Boolean wifi) {
+        this.wifi = wifi;
+    }
+
+    public Boolean getParking() {
+        return parking;
+    }
+
+    public void setParking(Boolean parking) {
+        this.parking = parking;
+    }
+
+    public Boolean getAlquiler() {
+        return alquiler;
+    }
+
+    public void setAlquiler(Boolean alquiler) {
+        this.alquiler = alquiler;
+    }
+
+    public Boolean getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Boolean venta) {
+        this.venta = venta;
+    }
+
+    public String getObsequios() {
+        return obsequios;
+    }
+
+    public void setObsequios(String obsequios) {
+        this.obsequios = obsequios;
+    }
+
+    public String getDiaS1() {
+        return diaS1;
+    }
+
+    public void setDiaS1(String diaS1) {
+        this.diaS1 = diaS1;
+    }
+
+    public String getDiaS2() {
+        return diaS2;
+    }
+
+    public void setDiaS2(String diaS2) {
+        this.diaS2 = diaS2;
+    }
+
+    public String getHorario1() {
+        return horario1;
+    }
+
+    public void setHorario1(String horario) {
+        this.horario1 = horario;
+    }
+    
+     public String getHorario2() {
+        return horario2;
+    }
+
+    public void setHorario2(String horario) {
+        this.horario2 = horario;
+    }
+
+    public float getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(float latitud) {
+        this.latitud = latitud;
+    }
+
+    public float getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(float longitud) {
+        this.longitud = longitud;
+    }
 }

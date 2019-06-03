@@ -12,7 +12,7 @@
         <meta name="description" content=""/>
         <meta name="author" content=""/>
          <!-- Bootstrap core CSS -->
-        <h:outputStylesheet name="bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
+         <h:outputStylesheet library="bootstrap-3.3.7-dist" name="css/bootstrap.min.css"/>
         <h:outputStylesheet library="css" name="TemplateStyle.css"></h:outputStylesheet>
         <h:outputStylesheet library="css" name="MyStyle.css"></h:outputStylesheet>
         <h:outputStylesheet library="css" name="Loginstyle.css"/>
@@ -23,12 +23,10 @@
             
         </ui:insert>
     </h:head>
-            <script>
-             #{sesion.alert}
-            </script>
-    <h:body onload ="#{sesion.resetLogin()}" > 
+            
+    <h:body  > 
        
-              <h:form>
+              <b:form>
               <!--Barra de menu (No mover si no Tiene copia de seguridad)-->
                 <nav class="navbar navbar-inverse navbar-fixed-top  " onload="">
                     <div class="container "  >
@@ -70,8 +68,8 @@
                                        </li>
                                 <li><h:commandLink>About Us</h:commandLink></li>
                             </ul>
-                            <ul class="nav right-padding navbar-nav navbar-right #{sesion.unloged} ">
-                                <li><a id="LogingTrigger" class="" href="#Login" data-toggle="modal">Login</a>
+                            <ul class="nav right-padding navbar-nav navbar-right #{sesion.unloged} " >
+                                <li ><a id="LogingTrigger" class="" href="#Login" data-toggle="modal">Login</a>
                                 </li>
                                 
                                 <li><h:commandLink class="small" action="Registrar.xhtml" immediate="true"><u>Registrate</u></h:commandLink></li>
@@ -90,7 +88,7 @@
                                                 </span>
                                                 <ul class="dropdown-menu " role="menu" id="menu" >
                                                     <li class="">
-                                                        <h:commandLink class="small" value="Administrar Establecimiento" action="Admin.xhtml"/>
+                                                        <h:commandLink class="small"  value="Administrar Establecimiento" action="Admin.xhtml"/>
                                                     </li>
                                                     <li class="">
                                                         <h:commandLink class="small" value="Registrar Establecimiento" action="Reg_Etbmo.xhtml"/>
@@ -115,7 +113,7 @@
                 </nav>
               <br/>
       
-               <div class="modal fade frame" id="Login" >
+              <div class="modal fade frame #{sesion.unloged}" id="Login" >
                    
                            <div  class=" modal-body " >
                                 <buton title="buton" class="close" data-dismiss="modal" aria-hidden="true">
@@ -136,7 +134,7 @@
                     </div>
                            <div class="form-group ">
                         <h:outputLabel value="Contraseña" class="control-label toLeft" for="pass"/>
-                        <b:inputSecret label="" value="#{sesion.testPass}" validator="#{sesion.foud()}"  validator-message="EMail o Contraseña incorrectos" required="True" required-message="LLenar Campo" placeholder=""  id="pass" autocomplete="off" class="form-control "/>
+                        <b:inputSecret label="" value="#{sesion.testPass}"  validator-message="EMail o Contraseña incorrectos" required="True" required-message="LLenar Campo" placeholder=""  id="pass" autocomplete="off" class="form-control "/>
                            </div>
                               <center>
                           <div class="form-inline">
@@ -158,7 +156,7 @@
  
                  
                  </div>
-            </h:form>
+            </b:form>
         
             
             <h:outputScript name="bootstrap-3.3.7-dist/js/bootstrap.min.js"/>
@@ -167,6 +165,11 @@
         <ui:insert name="body"/>
         
     </h:body>
-    
+    <script>
+        function  alerta(){
+            #{sesion.alert}
+        }
+           
+    </script>
 </html>
 

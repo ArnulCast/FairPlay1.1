@@ -37,36 +37,31 @@
                         </b:selectOneMenu>
                     </div>
                      <!--Boton para buscar ubicacion-->
-                     
-                    <div class="divmargeng form-group  col-xsm-12 col-xs-12 col-sm-6 col-md-4  col-lg-3">
+                    <div  class="divmargeng form-group  col-xsm-12 col-xs-12 col-sm-6 col-md-4  col-lg-3">
                         <a class=" items btn btn-default " href="#mapa" data-toggle="modal">Buscar Ubicacion</a>
                     </div>
                       <div class="modal fade" id="mapa">
                         <b:panelGrid  columns="1" large-screen="8" small-screen="12" offset-lg="2" offset-md="2" col-md="8">
-                           <div  class=" modal-header " style="background: white" >
-                                <buton title="buton" class="close" data-dismiss="modal" aria-hidden="true">
+                           <div  class=" modal-header " style="background: white">
+                                <buton title="buton" class="close" data-dismiss="modal" aria-hidden="true" escapable="true">
                                     <small>x</small>
                                 </buton>
                                 <h4 class="modal-title ">Elija la ubicacion deseada</h4>
                           </div>
                        </b:panelGrid>
-                       <b:panelGrid columns="1" span="8" class="" offset="2"   >
+                       <b:panelGrid columns="1" span="8" class="" offset="2">
                            <div id="map" class="Mapa"></div>
-                        </b:panelGrid>                        
+                       </b:panelGrid>                     
                         <b:panelGrid columns="1" large-screen="8" small-screen="12" offset-lg="2" offset-md="2" col-md="8">
                           <a class="mybtn  bg-danger col-lg-6  col-xs-6 " id="cancel" data-dismiss="modal" >Cancelar</a>
                           <a class="mybtn bg-primary col-lg-6 col-xs-6"  id="confirm" data-dismiss="modal" >Confirmar</a>
                          </b:panelGrid> 
                         </div>   
                       <!--Selecionar Fecha-->
-                     
                       <div class="divmargeng form-group  col-xsm-12 col-xs-12 col-sm-6 col-md-4  col-lg-3" >
-                          
                           <b:datepicker class="items " ></b:datepicker>
                       </div>
-                      
                     <!--Boton de Buscar-->
-                    
                     <div class="divmargeng form-group  col-xsm-12 col-xs-12 col-sm-6 col-md-12  col-lg-3">
                         <h:commandLink class=" items btn  btn-primary  "><span class="glyphicon glyphicon-search"></span></h:commandLink>
                     </div>
